@@ -1,22 +1,46 @@
+---
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Coffee landing</title>
+  </head>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+  <body class="m-0 w-full h-full">
+    <main class="grid grid-cols-1">
+      <section class="min-h-screen">
+        <slot name="hero" />
+      </section>
+
+      <section class="min-h-[70vh]">
+        <slot name="about" />
+      </section>
+
+      <section class="min-h-[80vh]">
+        <slot name="coffees" />
+      </section>
+
+      <section class="min-h-[90vh]">
+        <slot name="menu" />
+      </section>
+
+      <section class="min-h-[60vh]">
+        <slot name="services" />
+      </section>
+
+      <section class="min-h-[60vh]">
+        <slot name="contact" />
+      </section>
+
+      <footer class="min-h-[30vh]">
+        <slot name="footer" />
+      </footer>
+    </main>
+  </body>
+</html>

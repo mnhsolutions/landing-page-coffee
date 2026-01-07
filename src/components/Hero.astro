@@ -1,0 +1,25 @@
+---
+import NavBar from "./NavBar.astro";
+---
+
+<div class="relative h-full bg-[url('/images/hero/hero.png')] text-white">
+  <!-- NAV -->
+  <div class="absolute top-0 left-0 w-full z-20">
+    <NavBar />
+  </div>
+
+  <!-- HERO CONTENT -->
+  <div class="flex items-center justify-center h-full">
+    <div class="max-w-7xl px-6 text-center">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        Coffee that inspires
+      </h1>
+      <p class="text-lg md:text-xl mb-8">
+        Discover the art of specialty coffee
+      </p>
+      <button class="px-6 py-3 bg-amber-600 text-white font-semibold rounded-full">
+        Explore menu
+      </button>
+    </div>
+  </div>
+</div>
