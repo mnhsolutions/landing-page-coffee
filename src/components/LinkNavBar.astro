@@ -1,0 +1,9 @@
+---
+const { titleLink, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="relative text-[1rem] font-heading font-semibold after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[2px] after:w-[50%] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100">
+  {titleLink}
+</a>

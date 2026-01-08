@@ -1,25 +1,46 @@
 ---
-import NavBar from "./NavBar.astro";
+import NavBar from "@components/NavBar.astro";
 ---
 
-<div class="relative h-full bg-[url('/images/hero/hero.png')] text-white">
+<div class="relative min-h-screen bg-[url('/images/hero/hero.png')] bg-cover bg-center text-white">
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
   <!-- NAV -->
   <div class="absolute top-0 left-0 w-full z-20">
     <NavBar />
   </div>
 
   <!-- HERO CONTENT -->
-  <div class="flex items-center justify-center h-full">
-    <div class="max-w-7xl px-6 text-center">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        Coffee that inspires
-      </h1>
-      <p class="text-lg md:text-xl mb-8">
-        Discover the art of specialty coffee
-      </p>
-      <button class="px-6 py-3 bg-amber-600 text-white font-semibold rounded-full">
-        Explore menu
-      </button>
+  <div class="relative z-10 flex items-center min-h-screen">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-xl">
+        <!-- DESCRIPTION HERO -->
+        <h1 class="font-heading text-4xl md:text-4xl font-semibold leading-tight mb-4">
+          Bienvenido! <br />
+          Ofrecemos Café de especialidad cuidadosamente elaborado.
+        </h1>
+
+        <p class="text-base md:text-md text-neutral-200 mb-8 leading-relaxed">
+          Granos seleccionados, tostados en pequeños lotes y preparados para
+          resaltar el carácter único de cada origen.
+        </p>
+
+        <!-- CALLS TO ACTION -->
+        <div class="flex items-center gap-6">
+          <!-- CTA MAIN -->
+          <a href="#menu"
+            class="inline-flex items-center justify-center px-6 py-3 font-heading font-medium tracking-wide rounded-full bg-white text-neutral-900 transition-all duration-300 hover:bg-stone-200">
+            Explorar menú
+          </a>
+
+          <!-- CTA SECONDARY -->
+          <a href="#about"
+            class="relative font-heading font-medium tracking-wide text-neutral-300 transition-colors duration-300 hover:text-white after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-1 after:h-px after:w-[55%] after:bg-neutral-300 after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100">
+              Sobre nosotros
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

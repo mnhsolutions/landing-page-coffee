@@ -1,3 +1,14 @@
-<div class="flex items-center justify-center h-24 bg-transparent top-0">
-  <h1>NavBar</h1>
-</div>
+---
+import LinkNavBar from "@components/LinkNavBar.astro";
+---
+
+<nav class="flex items-center justify-between h-24 bg-transparent px-12">
+  <h4 class="text-2xl font-bold">CoffeeLab</h4>
+  <div class="links flex items-center justify-center gap-6">
+    <LinkNavBar titleLink="Sobre nosotros" href="#about" />
+    <LinkNavBar titleLink="Nuestro café" href="#coffees" />
+    <LinkNavBar titleLink="Menú" href="#menu" />
+    <LinkNavBar titleLink="Servicios" href="#services" />
+    <LinkNavBar titleLink="Contacto" href="#contact" />
+  </div>
+</nav>

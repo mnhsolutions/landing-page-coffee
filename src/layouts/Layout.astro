@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import "@styles/global.css";
 ---
 
 <!doctype html>
@@ -14,31 +14,31 @@ import "../styles/global.css";
 
   <body class="m-0 w-full h-full">
     <main class="grid grid-cols-1">
-      <section class="min-h-screen">
+      <section id="hero" class="min-h-screen">
         <slot name="hero" />
       </section>
 
-      <section class="min-h-[70vh]">
+      <section id="about" class="min-h-[70vh]">
         <slot name="about" />
       </section>
 
-      <section class="min-h-[80vh]">
+      <section id="coffees" class="min-h-[80vh]">
         <slot name="coffees" />
       </section>
 
-      <section class="min-h-[90vh]">
+      <section id="menu" class="min-h-[90vh]">
         <slot name="menu" />
       </section>
 
-      <section class="min-h-[60vh]">
+      <section id="services" class="min-h-[60vh]">
         <slot name="services" />
       </section>
 
-      <section class="min-h-[60vh]">
+      <section id="contact" class="min-h-[60vh]">
         <slot name="contact" />
       </section>
 
-      <footer class="min-h-[30vh]">
+      <footer id="footer" class="min-h-[30vh]">
         <slot name="footer" />
       </footer>
     </main>
