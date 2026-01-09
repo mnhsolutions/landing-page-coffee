@@ -2,9 +2,13 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
-
 export default defineConfig({
   vite: {
+    server: {
+      allowedHosts: [
+        'robbin-unmethodising-uninvitingly.ngrok-free.dev'
+      ]
+    },
     plugins: [tailwindcss()],
     resolve: {
       alias: {

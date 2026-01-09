@@ -1,0 +1,36 @@
+---
+const { imageCard, titleCard, textCard, textButtonCard, backgroundCard,
+titleColorCard, textColorCard, textColorButtonCard } = Astro.props;
+
+import ArrowIcon from "src/icons/ArrowIcon.astro";
+---
+
+<div class="grid h-[70vh] grid-rows-[65%_35%]"
+  style={`background-color: ${backgroundCard};`}>
+  <!-- IMAGE CARD COFFEE -->
+  <div class="image-card-coffee w-full overflow-hidden">
+    <img
+      src={imageCard}
+      alt={titleCard}
+      class="h-full w-full object-cover"
+    />
+  </div>
+
+  <!-- CONTENT CARD COFFEE -->
+  <div class="content-card-coffe flex flex-col justify-center items-center gap-4 px-6">
+    <h1 class="text-2xl font-bold font-heading" style={`color: ${titleColorCard};`}>
+      {titleCard}
+    </h1>
+
+    <p class="text-sm opacity-80" style={`color: ${textColorCard};`}>
+      {textCard}
+    </p>
+
+    <button class="flex items-center justify-center font-semibold w-max rounded-lg bg-transparent px-4 py-2 gap-2
+    hover:border-2 hover:border-white transition-all delay-150"
+    style={`color: ${textColorButtonCard};`}>
+      {textButtonCard}
+      <ArrowIcon />
+    </button>
+  </div>
+</div>

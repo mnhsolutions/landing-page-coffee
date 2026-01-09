@@ -1,8 +1,70 @@
-<div class="flex items-center justify-center h-full bg-amber-100">
-  <div class="max-w-6xl px-6">
-    <h2 class="text-4xl font-bold mb-6">Our Coffees</h2>
-    <p class="text-lg leading-relaxed">
-      From espresso to cold brew, explore our coffee selection.
-    </p>
-  </div>
-</div>
+---
+import CoffeeCard from "./CoffeeCard.astro";
+
+const imagesCoffes = {
+  cutCoffee: "/src/assets/products/coffes/cut-coffee.png",
+  coldBrew: "/src/assets/products/coffes/cold-brew.png",
+  coffeeCold: "/src/assets/products/coffes/coffee-cold.png",
+  latteClassic: "/src/assets/products/coffes/latte-clasicc.png",
+};
+
+const coffes = [
+  {
+    image: imagesCoffes.cutCoffee,
+    title: "Cortado Clásico",
+    description: "Espresso suave combinado con leche caliente y una delicada capa de espuma.",
+    buttonText: "Pedí ahora",
+    background: "#004953",
+    titleColorCard: "#FFF",
+    textColorCard: "#FFF",
+    textColorButtonCard: "#FFF",
+  },
+  {
+    image: imagesCoffes.coldBrew,
+    title: "Cold Brew",
+    description: "Café infusionado en frío durante varias horas, de sabor suave, baja acidez y notas naturalmente dulces. Refrescante y equilibrado.",
+    buttonText: "Pedí ahora",
+    background: "#fdefe6",
+    titleColorCard: "#004953",
+    textColorCard: "#004953",
+    textColorButtonCard: "#004953",
+  },
+  {
+    image: imagesCoffes.coffeeCold,
+    title: "Iced Coffee",
+    description: "Café preparado en caliente y servido frío con hielo, conservando su intensidad y aroma. Refrescante y de sabor más marcado.",
+    buttonText: "Pedí ahora",
+    background: "#f0974e",
+    titleColorCard: "#281500",
+    textColorCard: "#281500",
+    textColorButtonCard: "#281500",
+  },
+  {
+    image: imagesCoffes.latteClassic,
+    title: "Latte Clásico",
+    description: "Espresso intenso combinado con abundante leche vaporizada y una fina capa de espuma, logrando un café suave y cremoso.",
+    buttonText: "Pedí ahora",
+    background: "#362415",
+    titleColorCard: "#FFF",
+    textColorCard: "#FFF",
+    textColorButtonCard: "#FFF",
+  },
+];
+---
+
+<section class="grid grid-cols-4 h-full">
+  {
+    coffes.map((coffee) => (
+      <CoffeeCard
+        imageCard={coffee.image}
+        titleCard={coffee.title}
+        textCard={coffee.description}
+        textButtonCard={coffee.buttonText}
+        titleColorCard={coffee.titleColorCard}
+        textColorCard={coffee.textColorCard}
+        textColorButtonCard={coffee.textColorButtonCard}
+        backgroundCard={coffee.background}
+      />
+    ))
+  }
+</section>
