@@ -1,34 +1,53 @@
 ---
-const { imageCard, titleCard, textCard, textButtonCard, backgroundCard,
-titleColorCard, textColorCard, textColorButtonCard } = Astro.props;
+const {
+  imageCard,
+  titleCard,
+  textCard,
+  textButtonCard,
+  backgroundCard,
+  titleColorCard,
+  textColorCard,
+  textColorButtonCard,
+  imageShadow = "drop-shadow-[0_18px_32px_rgba(0,0,0,0.35)]"
+} = Astro.props;
 
 import ArrowIcon from "src/icons/ArrowIcon.astro";
 ---
 
-<div class="grid h-[70vh] grid-rows-[65%_35%]"
-  style={`background-color: ${backgroundCard};`}>
-  <!-- IMAGE CARD COFFEE -->
-  <div class="image-card-coffee w-full overflow-hidden">
+<div
+  class="grid h-[75vh] grid-rows-[65%_35%]"
+  style={`background-color: ${backgroundCard};`}
+>
+  <!-- IMAGE -->
+  <div class="image-card-coffee w-full">
     <img
       src={imageCard}
       alt={titleCard}
-      class="h-full w-full object-cover"
+      class={`h-full w-full object-cover filter
+        ${imageShadow}
+        mask-[linear-gradient(to_bottom,black_88%,transparent_100%)]
+        [-webkit-mask-image:linear-gradient(to_bottom,black_88%,transparent_100%)]
+      `}
     />
   </div>
 
-  <!-- CONTENT CARD COFFEE -->
-  <div class="content-card-coffe flex flex-col justify-center items-center gap-4 px-6">
+  <!-- CONTENT -->
+  <div class="content-card-coffe flex flex-col items-center gap-4 px-6 mt-2">
     <h1 class="text-2xl font-bold font-heading" style={`color: ${titleColorCard};`}>
       {titleCard}
     </h1>
 
-    <p class="text-sm opacity-80" style={`color: ${textColorCard};`}>
+    <p class="text-base opacity-80 text-center" style={`color: ${textColorCard};`}>
       {textCard}
     </p>
 
-    <button class="flex items-center justify-center font-semibold w-max rounded-lg bg-transparent px-4 py-2 gap-2
-    hover:border-2 hover:border-white transition-all delay-150"
-    style={`color: ${textColorButtonCard};`}>
+    <button
+      class="relative flex items-center justify-center gap-2 font-bold px-4 py-2
+        after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[2px] after:w-[40%]
+        after:scale-x-0 after:origin-center after:bg-current after:transition-transform
+        after:duration-200 hover:after:scale-x-100 hover:cursor-pointer"
+      style={`color: ${textColorButtonCard};`}
+    >
       {textButtonCard}
       <ArrowIcon />
     </button>

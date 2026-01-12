@@ -1,5 +1,5 @@
 ---
-import CoffeeCard from "./CoffeeCard.astro";
+import CoffeeCard from "@components/CoffeeCard.astro";
 
 const imagesCoffes = {
   cutCoffee: "/src/assets/products/coffes/cut-coffee.png",
@@ -18,36 +18,40 @@ const coffes = [
     titleColorCard: "#FFF",
     textColorCard: "#FFF",
     textColorButtonCard: "#FFF",
+    imageShadow: "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]",
   },
   {
     image: imagesCoffes.coldBrew,
-    title: "Cold Brew",
+    title: "Cafe Frio",
     description: "Café infusionado en frío durante varias horas, de sabor suave, baja acidez y notas naturalmente dulces. Refrescante y equilibrado.",
     buttonText: "Pedí ahora",
-    background: "#fdefe6",
+    background: "#e7dad2",
     titleColorCard: "#004953",
     textColorCard: "#004953",
     textColorButtonCard: "#004953",
+    imageShadow: "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]",
   },
   {
     image: imagesCoffes.coffeeCold,
-    title: "Iced Coffee",
+    title: "Café Helado Chocolate",
     description: "Café preparado en caliente y servido frío con hielo, conservando su intensidad y aroma. Refrescante y de sabor más marcado.",
     buttonText: "Pedí ahora",
     background: "#f0974e",
     titleColorCard: "#281500",
     textColorCard: "#281500",
-    textColorButtonCard: "#281500",
+    textColorButtonCard: "#FFF",
+    imageShadow: "drop-shadow-[0_18px_32px_rgba(0,0,0,0.5)]",
   },
   {
     image: imagesCoffes.latteClassic,
-    title: "Latte Clásico",
+    title: "Café con leche clásico",
     description: "Espresso intenso combinado con abundante leche vaporizada y una fina capa de espuma, logrando un café suave y cremoso.",
     buttonText: "Pedí ahora",
     background: "#362415",
     titleColorCard: "#FFF",
     textColorCard: "#FFF",
     textColorButtonCard: "#FFF",
+    imageShadow: "drop-shadow-[0_18px_32px_rgba(0,0,0,0.8)]",
   },
 ];
 ---
@@ -64,6 +68,7 @@ const coffes = [
         textColorCard={coffee.textColorCard}
         textColorButtonCard={coffee.textColorButtonCard}
         backgroundCard={coffee.background}
+        imageShadow={coffee.imageShadow}
       />
     ))
   }
