@@ -1,8 +1,58 @@
-<div class="flex items-center justify-center h-full bg-neutral-500">
-  <div class="max-w-6xl px-6">
-    <h2 class="text-4xl font-bold mb-6">Menu</h2>
-    <p class="text-lg leading-relaxed">
-      A curated menu of drinks and snacks made to pair perfectly.
-    </p>
+---
+import CardMenu from "@components/CardMenu.astro";
+import LinkMenu from "@components/LinkMenu.astro";
+import menu from "../data/menu.json";
+---
+
+<section>
+  <div class="max-w-[1200px] mx-auto py-10">
+    <header class="flex items-center h-28">
+      <nav class="w-full flex justify-end gap-4">
+        <LinkMenu titleLink="Todos" filter="all" />
+        <LinkMenu titleLink="Café" filter="coffes" />
+        <LinkMenu titleLink="Licuados" filter="smoothies" />
+        <LinkMenu titleLink="Panificación" filter="baking" />
+        <LinkMenu titleLink="Snacks fit" filter="snacks" />
+      </nav>
+    </header>
+
+    <section class="flex flex-col gap-6 mx-0">
+      <header class="flex items-center">
+        <h1 class="text-2xl font-bold">Nuestro Menú</h1>
+        <div class="h-[3px] w-28 bg-amber-500 translate-3"></div>
+      </header>
+
+      <ul id="menu-list"
+        class="grid items-center gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+        justify-center justify-items-center">
+
+      {/* Filtros de productos */}
+        {
+          menu.coffes.map((product) => (
+            <CardMenu {...product} category="coffes" />
+          ))
+        }
+
+        {
+          menu.smoothies.map((product) => (
+            <CardMenu {...product} category="smoothies" />
+          ))
+        }
+
+        {
+          menu.baking.map((product) => (
+            <CardMenu {...product} category="baking" />
+          ))
+        }
+
+        {
+          menu.snacks.map((product) => (
+            <CardMenu {...product} category="snacks" />
+          ))
+        }
+      </ul>
+    </section>
   </div>
-</div>
+</section>
+
+<script type="module" src="/src/utils/menuFilter.js"></script>
