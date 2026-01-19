@@ -15,15 +15,21 @@ import ArrowIcon from "src/icons/ArrowIcon.astro";
 ---
 
 <div
-  class="grid h-[75vh] grid-rows-[65%_35%]"
+  class="
+    grid
+    min-h-[70vh]
+    sm:min-h-[75vh]
+    lg:min-h-[80vh]
+    grid-rows-[60%_40%]
+  "
   style={`background-color: ${backgroundCard};`}
 >
   <!-- IMAGE -->
-  <div class="image-card-coffee w-full">
+  <div class="w-full overflow-hidden">
     <img
       src={imageCard}
       alt={titleCard}
-      class={`h-full w-full object-cover filter
+      class={`w-full h-full object-contain sm:object-cover filter
         ${imageShadow}
         mask-[linear-gradient(to_bottom,black_88%,transparent_100%)]
         [-webkit-mask-image:linear-gradient(to_bottom,black_88%,transparent_100%)]
@@ -32,12 +38,12 @@ import ArrowIcon from "src/icons/ArrowIcon.astro";
   </div>
 
   <!-- CONTENT -->
-  <div class="content-card-coffe flex flex-col items-center gap-4 px-6 mt-2">
-    <h1 class="text-2xl font-bold font-heading" style={`color: ${titleColorCard};`}>
+  <div class="flex flex-col items-center gap-3 px-4 sm:px-6 mt-2 text-center">
+    <h1 class="text-xl sm:text-2xl font-bold font-heading" style={`color: ${titleColorCard};`}>
       {titleCard}
     </h1>
 
-    <p class="text-base opacity-80 text-center" style={`color: ${textColorCard};`}>
+    <p class="text-sm sm:text-base opacity-80" style={`color: ${textColorCard};`}>
       {textCard}
     </p>
 
@@ -45,7 +51,7 @@ import ArrowIcon from "src/icons/ArrowIcon.astro";
       class="relative flex items-center justify-center gap-2 font-bold px-4 py-2
         after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[2px] after:w-[40%]
         after:scale-x-0 after:origin-center after:bg-current after:transition-transform
-        after:duration-200 hover:after:scale-x-100 hover:cursor-pointer"
+        after:duration-200 hover:after:scale-x-100"
       style={`color: ${textColorButtonCard};`}
     >
       {textButtonCard}

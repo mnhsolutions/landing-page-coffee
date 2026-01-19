@@ -1,7 +1,7 @@
 ---
 const { image, title, price, category, description } = Astro.props;
 import StarIcon from "../icons/StarIcon.astro";
-import CartIcon from "../icons/CartIcon.astro";
+import AddIcon from "src/icons/AddIcon.astro";
 ---
 
 <li class="menu-card grid grid-rows-[20%_50%_30%] h-72 w-72 rounded-xl py-4 px-8"
@@ -15,8 +15,9 @@ import CartIcon from "../icons/CartIcon.astro";
       </span>
     </div>
     <button
-      class="flex justify-center items-center h-8 w-8 bg-amber-500 rounded-full shrink-0">
-      <CartIcon class="h-8 w-8" />
+      class="flex justify-center items-center h-8 w-8 bg-amber-500 rounded-full shrink-0
+      hover:cursor-pointer hover:bg-amber-800 transition-colors duration-300 ease-in-out">
+      <AddIcon />
     </button>
   </header>
 

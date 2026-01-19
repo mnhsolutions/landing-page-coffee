@@ -1,25 +1,25 @@
 {
   "coffes": [
     {
-      "image": "/src/assets/menu/Coffee-classic.png",
+      "image": "/src/assets/images/menu/Coffee-classic.png",
       "title": "Café",
       "price": 3000,
       "description": "Infusión caliente con café"
     },
     {
-      "image": "/src/assets/menu/Mocha-coffee.png",
+      "image": "/src/assets/images/menu/Mocha-coffee.png",
       "title": "Café Moca",
       "price": 3000,
       "description": "Infusión caliente con leche y mocca"
     },
     {
-      "image": "/src/assets/menu/Coffee-ice.png",
+      "image": "/src/assets/images/menu/Coffee-ice.png",
       "title": "Café Helado",
       "price": 3000,
       "description": "Infusión fria con leche"
     },
     {
-      "image": "/src/assets/menu/Coffee-vanilla.png",
+      "image": "/src/assets/images/menu/Coffee-vanilla.png",
       "title": "Café Vainilla",
       "price": 3000,
       "description": "Infusión caliente de vainilla"
@@ -27,51 +27,51 @@
   ],
   "smoothies": [
     {
-      "image": "/src/assets/menu/Green-smoothie.png",
-      "title": "Licuado",
-      "price": 1500,
-      "description": "De frutilla"
-    },
-    {
-      "image": "/src/assets/menu/Strawberry-smoothie.png",
+      "image": "/src/assets/images/menu/Green-smoothie.png",
       "title": "Licuado",
       "price": 1500,
       "description": "Limonada con menta"
+    },
+    {
+      "image": "/src/assets/images/menu/Strawberry-smoothie.png",
+      "title": "Licuado",
+      "price": 1500,
+      "description": "De frutilla"
     }
   ],
   "baking": [
     {
-      "image": "/src/assets/menu/Tiramisu.png",
+      "image": "/src/assets/images/menu/Tiramisu.png",
       "title": "Torta Tiramisú",
       "price": 3000,
       "description": "Con vainillas y crema"
     },
     {
-      "image": "/src/assets/menu/Red-Velvet.png",
+      "image": "/src/assets/images/menu/Red-Velvet.png",
       "title": "Torta Red Velvet",
       "price": 5000,
       "description": "Con helado de crema"
     },
     {
-      "image": "/src/assets/menu/Cookies.png",
+      "image": "/src/assets/images/menu/Cookies.png",
       "title": "Galletas",
       "price": 1500,
       "description": "Con chips de chocolate"
     },
     {
-      "image": "/src/assets/menu/Chocolate-muffin.png",
+      "image": "/src/assets/images/menu/Chocolate-muffin.png",
       "title": "Muffin",
       "price": 1500,
       "description": "De chocolate"
     },
     {
-      "image": "/src/assets/menu/Vanilla-muffin.png",
+      "image": "/src/assets/images/menu/Vanilla-muffin.png",
       "title": "Muffin",
       "price": 1500,
       "description": "De vainilla con arándanos"
     },
     {
-      "image": "/src/assets/menu/Croissant.png",
+      "image": "/src/assets/images/menu/Croissant.png",
       "title": "Croissant",
       "price": 1500,
       "description": "De manteca"
@@ -79,25 +79,25 @@
   ],
   "snacks": [
     {
-      "image": "/src/assets/menu/Toast.png",
+      "image": "/src/assets/images/menu/Toast.png",
       "title": "Tostada Palta",
       "price": 1500,
       "description": "Tostón con palta"
     },
     {
-      "image": "/src/assets/menu/Cereal-bar.png",
+      "image": "/src/assets/images/menu/Cereal-bar.png",
       "title": "Barrita de Cereal",
       "price": 3000,
       "description": "Con Almendras"
     },
     {
-      "image": "/src/assets/menu/Yogurt.png",
+      "image": "/src/assets/images/menu/Yogurt.png",
       "title": "Yogurt",
       "price": 1500,
       "description": "Con granola y frutillas"
     },
     {
-      "image": "/src/assets/menu/Fruit-salad.png",
+      "image": "/src/assets/images/menu/Fruit-salad.png",
       "title": "Frutas",
       "price": 3000,
       "description": "Ensalada de Frutas"
