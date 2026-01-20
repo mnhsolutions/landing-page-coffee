@@ -17,11 +17,14 @@ import menu from "../data/menu.json";
     </header>
 
     <section class="flex flex-col gap-8 mx-0">
-      <header class="flex items-center">
-        <h1 class="text-2xl font-bold">Menú</h1>
-        <div class="h-[3px] w-24 bg-amber-500 translate-3"></div>
+      <header class="flex items-center justify-center">
+        <h1 class="relative text-2xl font-bold
+           after:absolute after:left-1/2 after:-translate-x-1/2
+           after:bottom-[-8px] after:h-[3px]
+           after:w-28 after:bg-amber-500">
+              Menú
+        </h1>
       </header>
-
       <ul id="menu-list"
         class="grid items-center gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
         justify-center justify-items-center">

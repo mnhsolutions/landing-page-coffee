@@ -1,22 +1,22 @@
 {
   "services": [
     {
-      "image": "/src/assets/images/services/S1.png",
+      "image": "/src/assets/images/services_images/S1.png",
       "title": "Café de especialidad",
       "description": "Seleccionamos granos de origen y los preparamos con técnicas precisas para resaltar cada aroma y sabor"
     },
     {
-      "image": "/src/assets/images/services/S2.png",
+      "image": "/src/assets/images/services_images/S2.png",
       "title": "Pasteleria artesanal",
       "description": "Elaboramos nuestra pasteleria de forma artesanal, con ingredientes frescos y recetas propias"
     },
     {
-      "image": "/src/assets/images/services/S3.png",
+      "image": "/src/assets/images/services_images/S3.png",
       "title": "Espacio productivo",
       "description": "Un ambiente cómodo, tranquilo y funcional, ideal para concentrarte, estudiar o trabajar con buena conexión"
     },
     {
-      "image": "/src/assets/images/services/S4.png",
+      "image": "/src/assets/images/services_images/S4.png",
       "title": "Café para llevar",
       "description": "Tu café favorito al instante, con la misma calidad de siempre, listo para acompañarte durante todo el día"
     }
