@@ -1,54 +1,49 @@
 ---
-const icons = {
-  location: "/src/assets/images/contact/Location.png",
-  phone: "/src/assets/images/contact/Phone.png",
-  email: "/src/assets/images/contact/Email.png",
-  clock: "/src/assets/images/contact/Clock.png",
-};
+import contact from "../data/contact.json";
 
-const info = [
-  { icon: icons.location, text: "Av. Principal 123, Ciudad", alt: "Ubicación" },
-  { icon: icons.phone, text: "+123 456 7890", alt: "Teléfono" },
-  { icon: icons.email, text: "CoffeeLab@gmail.com", alt: "Email" },
-  { icon: icons.clock, text: "Lun - Dom: 8:00 am - 8:00 pm", alt: "Horario" },
-];
+type IconKey = keyof typeof contact.icons;
+
+const icons = contact.icons;
+const info = contact.info as {
+  icon: IconKey;
+  text: string;
+  alt: string;
+}[];
 ---
 
-<section class="h-full">
-  <div class="max-w-[1200px] mx-auto py-10 h-full">
+<section class="h-full max-md:h-auto">
+  <div class="max-w-[1200px] mx-auto py-10 h-full max-md:h-auto px-4 max-md:px-6">
     <!-- GRID PRINCIPAL -->
-    <div class="grid grid-rows-[auto_1fr] h-full gap-10">
+    <div class="grid grid-rows-[auto_1fr] h-full gap-10
+        max-md:grid-rows-none max-md:gap-8">
       <!-- HEADER -->
-      <header class="flex flex-col gap-6 justify-center items-center">
-        <h1
-          class="relative text-2xl font-bold
-         after:content-['']
-         after:absolute after:left-1/2 after:-translate-x-1/2
-         after:bottom-[-8px]
-         after:h-[3px] after:w-44
-         after:bg-amber-500"
-        >
+      <header class="flex flex-col gap-6 justify-center items-center text-center">
+        <h1 class="relative text-2xl font-bold after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-8px] after:h-[3px] after:w-44 after:bg-amber-500">
           Contacto
         </h1>
-        <p class="text-center text-xl font-heading text-gray-700">
-          Tu próximo café empieza con un mensaje <br />
+
+        <p class="text-xl font-heading text-gray-700
+            max-md:text-base">
+          Tu próximo café empieza con un mensaje <br class="max-md:hidden" />
           Contáctanos o acércate a nuestro café y viví la experiencia.
         </p>
       </header>
 
-      <!-- CONTENIDO QUE RELLENA -->
-      <div class="grid grid-cols-2 gap-4 h-full">
+      <!-- CONTENIDO -->
+      <div class="grid grid-cols-2 gap-4 h-full
+          max-md:grid-cols-1 max-md:gap-6 max-md:h-auto">
         <!-- FORMULARIO -->
-        <form
-          class="h-full rounded-xl flex flex-col justify-center items-center gap-5"
-          style={`box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;`}
-        >
-          <h1 class="text-2xl font-semibold">Envianos un mensaje</h1>
+        <form class="h-full rounded-xl flex flex-col justify-center items-center gap-5
+            max-md:py-8"
+          style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+          
+          <h1 class="text-2xl font-semibold max-md:text-xl">
+            Envianos un mensaje
+          </h1>
+
           <input
             class="h-12 w-[90%] rounded-lg bg-gray-100 text-gray-800 px-2"
             type="text"
-            name=""
-            id=""
             placeholder="Nombre completo"
             autocomplete="off"
           />
@@ -56,42 +51,41 @@ const info = [
           <input
             class="h-12 w-[90%] rounded-lg bg-gray-100 text-gray-800 px-2"
             type="text"
-            name=""
-            id=""
             placeholder="Correo electrónico"
             autocomplete="off"
           />
 
-          <textarea
-            class="h-44 w-[90%] rounded-lg bg-gray-100 text-gray-800 px-2 py-2
-         resize-none leading-normal"
+          <textarea class="h-44 w-[90%] rounded-lg bg-gray-100 text-gray-800 px-2 py-2 resize-none leading-normal
+              max-md:h-36"
             placeholder="Mensaje"
-            autocomplete="off"></textarea>
+            autocomplete="off">
+          </textarea>
 
-          <button
-            class="w-[90%] py-3 px-6 font-bold bg-amber-500 rounded-xl text-white"
-            type="submit"
-          >
+          <button class="w-[90%] py-3 px-6 font-bold bg-amber-500 rounded-xl text-white"
+            type="submit">
             Enviar mensaje
           </button>
         </form>
 
         <!-- MAPA + INFO -->
-        <div
-          class="h-full rounded-xl overflow-hidden grid grid-rows-[65%_35%]"
-          style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"
-        >
+        <div class="h-full rounded-xl overflow-hidden grid grid-rows-[65%_35%]
+            max-md:grid-rows-none max-md:h-auto"
+          style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
           <!-- MAPA -->
-          <div class="w-full h-full">
-            <img src="/src/assets/images/contact/map.png" alt="map contact">
+          <div class="w-full h-full max-md:h-64">
+            <img
+              src="/src/assets/images/contact/map.png"
+              alt="map contact"
+              class="w-full h-full object-cover"
+            />
           </div>
 
           <!-- INFO -->
-          <div class="flex flex-col gap-8 justify-center px-8 bg-white">
-            {info.map(item => (
+          <div class="flex flex-col gap-8 justify-center px-8 bg-white
+              max-md:gap-4 max-md:py-6">
+            {info.map((item) => (
               <span class="flex items-center gap-3 text-sm font-semibold text-gray-700">
-                <img src={item.icon} alt={item.alt} class="w-5 h-5" />
+                <img src={icons[item.icon]} alt={item.alt} class="w-5 h-5" />
                 {item.text}
               </span>
             ))}

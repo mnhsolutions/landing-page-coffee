@@ -1,0 +1,43 @@
+{
+  "contactInfo": [
+    {
+      "icon": "/src/assets/images/footer/Phone.png",
+      "title": "Teléfono",
+      "subtitle": "+123 456 7890"
+    },
+    {
+      "icon": "/src/assets/images/footer/Email.png",
+      "title": "Email",
+      "subtitle": "CoffeeLab@gmail.com",
+      "width": "w-56"
+    },
+    {
+      "icon": "/src/assets/images/footer/Location.png",
+      "title": "Ubicación",
+      "subtitle": "Av. Principal 123. Ciudad",
+      "width": "w-56"
+    }
+  ],
+  "socialLinks": [
+    {
+      "href": "https://www.instagram.com/mnh.solu",
+      "icon": "/src/assets/images/footer/Instagram.png",
+      "alt": "Instagram Icon"
+    },
+    {
+      "href": "https://www.facebook.com",
+      "icon": "/src/assets/images/footer/Facebook.png",
+      "alt": "Facebook Icon"
+    },
+    {
+      "href": "https://www.apple.com/la",
+      "icon": "/src/assets/images/footer/Apple.png",
+      "alt": "Apple Icon"
+    },
+    {
+      "href": "https://play.google.com/store/apps/",
+      "icon": "/src/assets/images/footer/Play-Store.png",
+      "alt": "Playstore Icon"
+    }
+  ]
+}

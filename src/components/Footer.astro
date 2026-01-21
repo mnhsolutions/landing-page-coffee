@@ -1,81 +1,55 @@
 ---
 import InfoFooter from "@components/InfoFooter.astro";
 import LinkFooter from "@components/LinkFooter.astro";
-
-const infoContactImages = {
-  phoneIcon: "./src/assets/images/footer/Phone.png",
-  emailIcon: "./src/assets/images/footer/Email.png",
-  locationIcon: "./src/assets/images/footer/Location.png"
-}
-
-const linksSocialImages = {
-  instagramIcon: "./src/assets/images/footer/Instagram.png",
-  facebookIcon: "./src/assets/images/footer/Facebook.png",
-  appleIcon: "./src/assets/images/footer/Apple.png",
-  playstoreIcon: "./src/assets/images/footer/Play-Store.png"
-}
-
+import footerInfo from "../data/footerInfo.json";
+const { contactInfo, socialLinks } = footerInfo;
 ---
 
-<!-- FOOTER -->
 <footer class="w-full bg-gray-200">
-  <div class="flex items-center justify-between h-40 px-[120px]">
+  <div class="flex items-center justify-between h-40 px-[110px]
+      max-md:h-auto max-md:flex-col max-md:items-center max-md:justify-center max-md:gap-8
+      max-md:px-6 max-md:py-10 max-md:text-center">
     <!-- LOGO -->
     <h4 class="text-2xl font-bold">
       CoffeeLab
     </h4>
 
     <!-- INFO -->
-    <div class="info flex gap-8">
-      <InfoFooter
-        imageCard={infoContactImages.phoneIcon}
-        Title="Teléfono"
-        subTitle="+123 456 7890"
-      />
-
-      <InfoFooter
-        imageCard={infoContactImages.emailIcon}
-        Title="Email"
-        subTitle="CoffeeLab@gmail.com"
-        width="w-56"
-      />
-
-      <InfoFooter
-        imageCard={infoContactImages.locationIcon}
-        Title="Ubicación"
-        subTitle="Av. Principal 123. Ciudad"
-        width="w-56"
-      />
+    <div
+      class="info flex gap-8
+        max-md:flex-col max-md:items-center max-md:gap-4">
+      {contactInfo.map((item) => (
+        <InfoFooter
+          imageCard={item.icon}
+          Title={item.title}
+          subTitle={item.subtitle}
+          width={item.width}
+        />
+      ))}
     </div>
 
-    <!-- LINKS -->
-    <div class="links h-24 w-64 flex justify-center items-center gap-10 text-right">
-      <LinkFooter href="https://www.instagram.com/mnh.solu" 
-        imageLink={linksSocialImages.instagramIcon} 
-        alt="Instagram Icon" 
-      /> 
-
-      <LinkFooter href="https://www.facebook.com" 
-        imageLink={linksSocialImages.facebookIcon} 
-        alt="Facebook Icon" 
-      /> 
-
-      <LinkFooter href="https://www.apple.com/la" 
-        imageLink={linksSocialImages.appleIcon} 
-        alt="Apple Icon" 
-      /> 
-
-      <LinkFooter href="https://play.google.com/store/apps/" 
-        imageLink={linksSocialImages.playstoreIcon} 
-        alt="Playstore Icon" 
-      /> 
+    <!-- SOCIAL LINKS -->
+    <div
+      class="links h-24 w-64 flex justify-center items-center gap-10
+        max-md:w-full max-md:h-auto max-md:justify-center">
+      {socialLinks.map((link) => (
+        <LinkFooter
+          href={link.href}
+          imageLink={link.icon}
+          alt={link.alt}
+        />
+      ))}
     </div>
   </div>
 </footer>
 
-<!-- COPYRIGHT (FUERA DEL FOOTER) -->
-<div class="flex justify-center items-center h-8 w-full bg-gray-100">
-  <span class="flex gap-2 font-bold text-gray-700 text-sm">
-    Copyright <p class="font-heading text-amber-600">MNH SOLUCIONTS</p> 2026. All Rights Reserved
+<!-- COPYRIGHT -->
+<div class="flex justify-center items-center h-8 w-full bg-gray-100
+    max-sm:h-auto max-sm:py-2">
+  <span class="flex gap-2 font-bold text-gray-700 text-sm
+      max-sm:flex-col max-sm:items-center max-sm:gap-0">
+      Copyright
+    <p class="font-heading text-amber-600">MNH SOLUCIONTS</p>
+    2026. All Rights Reserved
   </span>
 </div>

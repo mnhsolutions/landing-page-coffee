@@ -1,10 +1,42 @@
 ---
-const { titleLink, filter } = Astro.props;
+import IconCoffee from "src/icons/IconCoffee.astro";
+import IconSmoothies from "src/icons/IconSmoothies.astro";
+import IconBaking from "src/icons/IconBaking.astro";
+import IconSnacks from "src/icons/IconSnacks.astro";
+import IconAll from "src/icons/IconAll.astro";
+
+type FilterKey = "all" | "coffes" | "smoothies" | "baking" | "snacks";
+
+const { titleLink, filter } = Astro.props as {
+  titleLink: string;
+  filter: FilterKey;
+};
+
+const icons = {
+  all: IconAll,
+  coffes: IconCoffee,
+  smoothies: IconSmoothies,
+  baking: IconBaking,
+  snacks: IconSnacks
+} as const;
+
+const Icon = icons[filter];
 ---
 
 <button
   type="button"
   data-filter={filter}
-  class="filter-btn py-2 px-6 text-sm rounded-md border-2 border-color-coffee-main cursor-pointer transition">
-  {titleLink}
+  class="filter-btn border-2 border-color-coffee-main cursor-pointer transition py-2 px-6 text-sm rounded-md
+    sm:inline-flex sm:items-center sm:justify-center sm:gap-2
+    max-sm:w-11 max-sm:h-11 max-sm:p-0 max-sm:rounded-full max-sm:flex max-sm:items-center    max-sm:justify-center max-sm:border-amber-300 max-sm:bg-amber-50 max-sm:hover:bg-amber-100
+    max-sm:active:scale-95">
+  <!-- ICONO → SOLO MOBILE -->
+  <span class="sm:hidden text-amber-600">
+    <Icon />
+  </span>
+
+  <!-- TEXTO → SOLO DESKTOP -->
+  <span class="hidden sm:inline">
+    {titleLink}
+  </span>
 </button>

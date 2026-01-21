@@ -18,3 +18,23 @@
 html {
   scroll-behavior: smooth;
 }
+
+.is-hidden {
+  display: none;
+}
+
+.filter-btn.active {
+  background-color: rgb(255 237 213); /* amber-100 */
+  border-color: rgb(217 119 6); /* amber-600 */
+}
+
+@media (max-width: 640px) {
+  .filter-btn {
+    padding: 0;
+  }
+
+  .filter-btn.active {
+    background-color: rgb(255 237 213);
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+  }
+}

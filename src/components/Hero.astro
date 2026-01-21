@@ -2,13 +2,13 @@
 import NavBar from "@components/NavBar.astro";
 ---
 
-<div class="relative bg-[url('/images/hero/hero.png')] bg-cover bg-center text-white">
+<div class="relative bg-[url('/images/hero/hero.webp')] bg-cover bg-center text-white">
   <!-- Overlay -->
   <div class="absolute inset-0 bg-black/40"></div>
 
   <!-- NAV -->
   <div class="absolute top-0 left-0 w-full z-20">
-    <div class="max-w-[1200px] mx-auto">
+    <div class="max-w-[1200px] mx-auto max-sm:px-4">
       <NavBar />
     </div>
   </div>
@@ -17,18 +17,26 @@ import NavBar from "@components/NavBar.astro";
   <div class="relative z-10 flex items-center min-h-screen">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-xl">
+
         <!-- DESCRIPTION HERO -->
-        <h1 class="font-heading text-4xl md:text-4xl font-semibold leading-tight mb-4">
-          Tu café de especialidad <br> empieza acá.
+        <h1 class="font-heading text-4xl md:text-4xl font-semibold leading-tight mb-4
+            max-sm:text-2xl
+            max-sm:leading-snug">
+          Tu café de especialidad
+          <br class="max-sm:hidden">
+          empieza acá.
         </h1>
 
-        <p class="text-base md:text-md text-neutral-200 mb-8 leading-relaxed">
+        <p class="text-base md:text-md text-neutral-200 mb-8 leading-relaxed
+            max-sm:text-sm">
           Granos seleccionados, tostados en pequeños lotes y preparados para
           resaltar el carácter único de cada origen.
         </p>
 
         <!-- CALLS TO ACTION -->
-        <div class="flex items-center gap-6">
+        <div
+          class="flex items-center gap-6
+            max-sm:gap-4">
           <!-- CTA MAIN -->
           <a href="#menu"
             class="inline-flex items-center justify-center px-6 py-3 font-heading font-medium tracking-wide rounded-full bg-white text-neutral-900 transition-all duration-300 hover:bg-stone-200">
@@ -38,7 +46,7 @@ import NavBar from "@components/NavBar.astro";
           <!-- CTA SECONDARY -->
           <a href="#about"
             class="relative font-heading font-medium tracking-wide text-neutral-300 transition-colors duration-300 hover:text-white after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-1 after:h-px after:w-[55%] after:bg-neutral-300 after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100">
-              Sobre nosotros
+            Sobre nosotros
           </a>
         </div>
       </div>

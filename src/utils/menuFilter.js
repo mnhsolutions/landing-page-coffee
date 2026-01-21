@@ -1,32 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll("[data-filter]");
-  const cards = document.querySelectorAll(".menu-card");
+  const menuGrid = document.getElementById("menu-products");
+  if (!menuGrid) return;
 
-  // función central de filtrado
+  const buttons = document.querySelectorAll("[data-filter]");
+  const cards = menuGrid.querySelectorAll(".menu-card");
+
   function applyFilter(category, activeButton) {
-    // estado visual
+    // reset visual
     buttons.forEach((btn) => {
-      btn.classList.remove("border-amber-600", "bg-rose-100");
+      btn.classList.remove("active", "border-amber-600","bg-rose-100");
     });
 
-    activeButton.classList.add("border-amber-600", "bg-rose-100");
+    // estado activo
+    activeButton.classList.add("active", "border-amber-600", "bg-rose-100");
 
     // filtrado
     cards.forEach((card) => {
-      card.style.display =
-        category === "all" || card.dataset.category === category
-          ? "grid"
-          : "none";
+      const match = category === "all" || card.dataset.category === category;
+      card.classList.toggle("is-hidden", !match);
     });
   }
 
-  // estado inicial → Todos los productos
+  // estado inicial
   const defaultButton = document.querySelector('[data-filter="all"]');
   if (defaultButton) {
     applyFilter("all", defaultButton);
   }
 
-  // clicks
+  // eventos
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       applyFilter(btn.dataset.filter, btn);

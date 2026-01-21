@@ -4,10 +4,14 @@ import LinkMenu from "@components/LinkMenu.astro";
 import menu from "../data/menu.json";
 ---
 
-<section>
-  <div class="max-w-[1200px] mx-auto py-10">
+<section id="menu" class="min-h-screen">
+  <div class="max-w-[1200px] mx-auto py-10 flex flex-col gap-10">
+
+    <!-- NAV FILTROS -->
     <header class="flex items-center h-28">
-      <nav class="w-full flex justify-end gap-4">
+      <nav class="w-full flex gap-4 justify-end
+        max-sm:justify-center max-sm:items-center max-sm:overflow-x-auto max-sm:whitespace-nowrap
+        max-sm:pb-2">
         <LinkMenu titleLink="Todos" filter="all" />
         <LinkMenu titleLink="Café" filter="coffes" />
         <LinkMenu titleLink="Licuados" filter="smoothies" />
@@ -16,45 +20,27 @@ import menu from "../data/menu.json";
       </nav>
     </header>
 
-    <section class="flex flex-col gap-8 mx-0">
-      <header class="flex items-center justify-center">
-        <h1 class="relative text-2xl font-bold
-           after:absolute after:left-1/2 after:-translate-x-1/2
-           after:bottom-[-8px] after:h-[3px]
-           after:w-28 after:bg-amber-500">
-              Menú
-        </h1>
-      </header>
-      <ul id="menu-list"
-        class="grid items-center gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
-        justify-center justify-items-center">
+    <header class="flex items-center justify-center">
+      <h1 class="relative text-2xl font-bold after:absolute after:left-1/2 after:-translate-x-1/2
+        after:bottom-[-8px] after:h-[3px] after:w-28 after:bg-amber-500">
+        Menú
+      </h1>
+    </header>
 
-      {/* Filtros de productos */}
-        {
-          menu.coffes.map((product) => (
-            <CardMenu {...product} category="coffes" />
-          ))
-        }
+    <!-- Menu productos -->
+    <ul
+      id="menu-products"
+      class="grid min-h-[60vh] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+      gap-8 justify-items-center">
 
-        {
-          menu.smoothies.map((product) => (
-            <CardMenu {...product} category="smoothies" />
-          ))
-        }
+      {menu.coffes.map((product) => (<CardMenu {...product} category="coffes" />))}
 
-        {
-          menu.baking.map((product) => (
-            <CardMenu {...product} category="baking" />
-          ))
-        }
+      {menu.smoothies.map((product) => (<CardMenu {...product} category="smoothies" />))}
 
-        {
-          menu.snacks.map((product) => (
-            <CardMenu {...product} category="snacks" />
-          ))
-        }
-      </ul>
-    </section>
+      {menu.baking.map((product) => (<CardMenu {...product} category="baking" />))}
+
+      {menu.snacks.map((product) => (<CardMenu {...product} category="snacks" />))}
+    </ul>
   </div>
 </section>
 

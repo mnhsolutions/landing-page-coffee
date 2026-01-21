@@ -1,0 +1,61 @@
+---
+const {
+  imageCard,
+  titleCard,
+  textCard,
+  textButtonCard,
+  backgroundCard,
+  titleColorCard,
+  textColorCard,
+  textColorButtonCard,
+  imageShadow = "drop-shadow-[0_18px_32px_rgba(0,0,0,0.35)]"
+} = Astro.props;
+
+import ArrowIcon from "src/icons/ArrowIcon.astro";
+---
+
+<div
+  class="
+    grid
+    min-h-[70vh]
+    sm:min-h-[75vh]
+    lg:min-h-[80vh]
+    grid-rows-[60%_40%]
+  "
+  style={`background-color: ${backgroundCard};`}
+>
+  <!-- IMAGE -->
+  <div class="w-full overflow-hidden">
+    <img
+      src={imageCard}
+      alt={titleCard}
+      class={`w-full h-full object-contain sm:object-cover filter
+        ${imageShadow}
+        mask-[linear-gradient(to_bottom,black_88%,transparent_100%)]
+        [-webkit-mask-image:linear-gradient(to_bottom,black_88%,transparent_100%)]
+      `}
+    />
+  </div>
+
+  <!-- CONTENT -->
+  <div class="flex flex-col items-center gap-3 px-4 sm:px-6 mt-2 text-center">
+    <h1 class="text-xl sm:text-2xl font-bold font-heading" style={`color: ${titleColorCard};`}>
+      {titleCard}
+    </h1>
+
+    <p class="text-sm sm:text-base opacity-80" style={`color: ${textColorCard};`}>
+      {textCard}
+    </p>
+
+    <button
+      class="relative flex items-center justify-center gap-2 font-bold px-4 py-2
+        after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[2px] after:w-[40%]
+        after:scale-x-0 after:origin-center after:bg-current after:transition-transform
+        after:duration-200 hover:after:scale-x-100"
+      style={`color: ${textColorButtonCard};`}
+    >
+      {textButtonCard}
+      <ArrowIcon />
+    </button>
+  </div>
+</div>

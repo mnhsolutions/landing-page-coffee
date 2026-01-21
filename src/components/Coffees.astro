@@ -4,9 +4,5 @@ import coffees from "../data/coffees.json";
 ---
 
 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-8 max-w-7xl mx-auto">
-  {
-    coffees.coffees.map((coffee) => (
-      <CoffeeCard {...coffee} />
-    ))
-  }
+  {coffees.coffees.map((coffee) => (<CoffeeCard {...coffee} />))}
 </section>

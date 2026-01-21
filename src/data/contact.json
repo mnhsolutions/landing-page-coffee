@@ -1,0 +1,30 @@
+{
+  "icons": {
+    "location": "/src/assets/images/contact/Location.png",
+    "phone": "/src/assets/images/contact/Phone.png",
+    "email": "/src/assets/images/contact/Email.png",
+    "clock": "/src/assets/images/contact/Clock.png"
+  },
+  "info": [
+    {
+      "icon": "location",
+      "text": "Av. Principal 123, Ciudad",
+      "alt": "Ubicación"
+    },
+    {
+      "icon": "phone",
+      "text": "+123 456 7890",
+      "alt": "Teléfono"
+    },
+    {
+      "icon": "email",
+      "text": "CoffeeLab@gmail.com",
+      "alt": "Email"
+    },
+    {
+      "icon": "clock",
+      "text": "Lun - Dom: 8:00 am - 8:00 pm",
+      "alt": "Horario"
+    }
+  ]
+}

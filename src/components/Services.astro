@@ -7,21 +7,14 @@ import CardService from "@components/CardService.astro"
   <div class="max-w-[1200px] mx-auto py-10">
     <section class="flex flex-col gap-10 mx-0">
       <header class="flex items-center justify-center">
-        <h1 class="relative text-2xl font-bold
-           after:absolute after:left-1/2 after:-translate-x-1/2
-           after:bottom-[-8px] after:h-[3px]
-           after:w-44 after:bg-amber-500">
-              Nuestros servicios
+        <h1 class="relative text-2xl font-bold after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-8px] after:h-[3px] after:w-44 after:bg-amber-500">
+          Nuestros servicios
         </h1>
       </header>
 
-      <ul id="menu-list" 
+      <ul 
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-fit">
-        {
-          services.services.map((service) => (
-            <CardService {...service} />
-          ))
-        }
+        {services.services.map((service) => (<CardService {...service} />))}
       </ul>
     </section>
   </div>
