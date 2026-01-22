@@ -1,7 +1,41 @@
 ---
 import CardMenu from "@components/CardMenu.astro";
 import LinkMenu from "@components/LinkMenu.astro";
-import menu from "../data/menu.json";
+import type { Product, MenuData } from "../types";
+import menuDataRaw from "../data/menu.json";
+
+// Tipamos el JSON
+const menuData: MenuData = menuDataRaw as MenuData;
+
+// Generamos IDs únicos para todos los productos al cargar
+menuData.all = menuData.all.map((p, index) => ({
+  ...p,
+  id: `product-${index + 1}` // id único
+}));
+
+// Reasignamos los ids en los filtros
+menuData.coffes = menuData.coffes.map((_, i) => menuData.all[i].id);
+menuData.smoothies = menuData.smoothies.map((_, i) => menuData.all[menuData.coffes.length + i].id);
+menuData.baking = menuData.baking.map((_, i) => menuData.all[menuData.coffes.length + menuData.smoothies.length + i].id
+);
+menuData.snacks = menuData.snacks.map(
+  (_, i) => menuData.all[menuData.coffes.length + menuData.smoothies.length + menuData.baking.length + i].id
+);
+
+// Función para obtener productos según filtro
+type Filter = 'all' | 'coffes' | 'smoothies' | 'baking' | 'snacks';
+
+function getProducts(filter: Filter): Product[] {
+  if (filter === 'all') return menuData.all;
+  return menuData[filter].map(id => {
+    const p = menuData.all.find(prod => prod.id === id);
+    if (!p) throw new Error(`Product with id ${id} not found`);
+    return p;
+  });
+}
+
+// Aquí podrías recibir un filtro dinámico por props, por ahora mostramos todos
+const products: Product[] = getProducts('all');
 ---
 
 <section id="menu" class="min-h-screen">
@@ -33,13 +67,10 @@ import menu from "../data/menu.json";
       class="grid min-h-[60vh] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
       gap-8 justify-items-center">
 
-      {menu.coffes.map((product) => (<CardMenu {...product} category="coffes" />))}
+      {products.map((product) => (
+        <CardMenu {...product} />
+      ))}
 
-      {menu.smoothies.map((product) => (<CardMenu {...product} category="smoothies" />))}
-
-      {menu.baking.map((product) => (<CardMenu {...product} category="baking" />))}
-
-      {menu.snacks.map((product) => (<CardMenu {...product} category="snacks" />))}
     </ul>
   </div>
 </section>

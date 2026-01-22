@@ -1,12 +1,14 @@
 ---
-const { image, title, price, category, description } = Astro.props;
+import ButtonAddCart from '../components/ButtonAddCart';
 import StarIcon from "../icons/StarIcon.astro";
-import AddIcon from "src/icons/AddIcon.astro";
+
+const { id, image, title, price, category, description } = Astro.props;
+const product = { id, image, title, price, category, description };
 ---
 
 <li class="menu-card grid grid-rows-[20%_50%_30%] h-72 w-72 rounded-xl py-4 px-8"
   data-category={category}
-  style={`box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;`}>
+  style={`box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;`}>
   <header class="flex justify-between items-center">
     <div class="product-rating flex gap-2">
       <h1 class="text-sm font-bold">4.8</h1>
@@ -14,11 +16,9 @@ import AddIcon from "src/icons/AddIcon.astro";
         <StarIcon />
       </span>
     </div>
-    <button
-      class="flex justify-center items-center h-8 w-8 bg-amber-500 rounded-full shrink-0
-      hover:cursor-pointer hover:bg-amber-800 transition-colors duration-300 ease-in-out">
-      <AddIcon />
-    </button>
+
+    <!-- Botón React para agregar al carrito -->
+    <ButtonAddCart client:load product={product} />
   </header>
 
   <div class="content flex justify-center items-center overflow-hidden">

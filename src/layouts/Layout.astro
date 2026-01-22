@@ -1,5 +1,6 @@
 ---
 import "@styles/global.css";
+import CartInitializer from "@components/CartInitializer";
 ---
 
 <!doctype html>
@@ -42,5 +43,31 @@ import "@styles/global.css";
         <slot name="footer" />
       </footer>
     </main>
+
+ <!-- Carrito overlay -->
+<div id="cart-overlay" class="fixed inset-0 z-50 hidden bg-black/40">
+  <div id="cart-sidebar"
+    class="absolute right-0 top-0 h-full w-full md:w-1/3 bg-white shadow-lg p-6 flex flex-col
+    transform translate-x-full transition-transform duration-300">
+    <header class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-bold">Carrito</h2>
+      <button id="close-cart" class="text-2xl">&times;</button>
+    </header>
+
+    <ul id="cart-items" class="flex-1 overflow-y-auto space-y-4">
+      <!-- Aquí se agregan los productos del carrito -->
+    </ul>
+
+    <footer class="mt-4">
+      <p class="font-bold text-lg">Total: $<span id="cart-total">0</span></p>
+      <button class="w-full mt-2 bg-amber-500 text-white py-2 rounded">Pagar</button>
+    </footer>
+  </div>
+</div>
+
+  <!-- Inicializamos el carrito en cliente -->
+  <CartInitializer client:load />
+
+  <script type="module" src="/src/utils/cartSidebar.js"></script>
   </body>
 </html>
