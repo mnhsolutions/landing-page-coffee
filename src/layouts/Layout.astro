@@ -1,6 +1,7 @@
 ---
 import "@styles/global.css";
 import CartInitializer from "@components/CartInitializer";
+import IconClosemenu from "src/icons/IconClosemenu.astro";
 ---
 
 <!doctype html>
@@ -13,7 +14,7 @@ import CartInitializer from "@components/CartInitializer";
     <title>Coffee landing</title>
   </head>
 
-  <body class="m-0 w-full h-full">
+  <body class="m-0 w-full">
     <main class="grid grid-cols-1">
       <section id="hero" class="min-h-screen">
         <slot name="hero" />
@@ -51,18 +52,25 @@ import CartInitializer from "@components/CartInitializer";
     transform translate-x-full transition-transform duration-300">
     <header class="flex justify-between items-center mb-6">
       <h2 class="text-xl font-bold">Carrito</h2>
-      <button id="close-cart" class="text-2xl">&times;</button>
+      <button id="close-cart" class="text-2xl cursor-pointer">
+        <IconClosemenu />
+      </button>
     </header>
 
-    <ul id="cart-items" class="flex-1 overflow-y-auto space-y-4">
+    <ul id="cart-items" class="flex-1 overflow-y-auto space-y-4 ">
       <!-- Aquí se agregan los productos del carrito -->
     </ul>
 
     <footer class="mt-4">
       <p class="font-bold text-lg">Total: $<span id="cart-total">0</span></p>
-      <button class="w-full mt-2 bg-amber-500 text-white py-2 rounded">Pagar</button>
+      <button class="w-full mt-2 bg-amber-500 text-white py-4 rounded-xl">Pagar</button>
     </footer>
   </div>
+</div>
+
+  <div id="toast"
+    class="fixed top-0 left-1/2 -translate-x-1/2 z-[999] mt-2 px-6 py-3 rounded-lg shadow-lg
+    text-white text-sm font-medium opacity-0 -translate-y-6 transition-all duration-300 pointer-events-none">
 </div>
 
   <!-- Inicializamos el carrito en cliente -->

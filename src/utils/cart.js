@@ -1,3 +1,5 @@
+import { showToast } from "./toast.js";
+
 let cart = [];
 
 // Inicializa el carrito desde localStorage
@@ -22,8 +24,10 @@ export function addToCart(product) {
 
   if (existing) {
     existing.quantity++;
+    showToast(`+1 ${product.title}`, "success");
   } else {
     cart.push({ ...product, quantity: 1 });
+    showToast(`${product.title} agregado al carrito`, "success");
   }
 
   saveCart();
@@ -38,9 +42,11 @@ export function removeFromCart(productId) {
 
   if (item.quantity > 1) {
     item.quantity--; // decrementamos
+    showToast(`-1 ${item.title}`, "warning");
   } else {
     // si es 1, lo eliminamos
     cart = cart.filter(i => i.id !== productId);
+    showToast(`${item.title} eliminado`, "error");
   }
 
   saveCart();
@@ -76,20 +82,22 @@ export function renderCart() {
         <p class="text-sm text-gray-600">$${item.price} x <span class="quantity">${item.quantity}</span></p>
       </div>
       <div class="flex flex-col gap-1">
-        <button data-id="${item.id}" class="increment bg-amber-500 hover:bg-amber-700 text-white rounded px-2">+</button>
-        <button data-id="${item.id}" class="decrement bg-red-500 hover:bg-red-700 text-white rounded px-2">-</button>
+        <button data-id="${item.id}" class="increment cursor-pointer bg-amber-500 hover:bg-amber-700 text-white rounded px-2">+</button>
+        <button data-id="${item.id}" class="decrement cursor-pointer bg-amber-500 hover:bg-amber-700 text-white rounded px-2">-</button>
       </div>
     `;
 
     // Incrementar cantidad
     li.querySelector('.increment').addEventListener('click', () => {
       updateQuantity(item.id, item.quantity + 1);
+      showToast(`+1 ${item.title}`, "success");
     });
 
     // Decrementar cantidad o eliminar si es 1
     li.querySelector('.decrement').addEventListener('click', () => {
       if (item.quantity > 1) {
         updateQuantity(item.id, item.quantity - 1);
+        showToast(`-1 ${item.title}`, "warning");
       } else {
         removeFromCart(item.id);
       }
