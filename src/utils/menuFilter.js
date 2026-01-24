@@ -3,22 +3,31 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!menuGrid) return;
 
   const buttons = document.querySelectorAll("[data-filter]");
-  const cards = menuGrid.querySelectorAll(".menu-card");
+  const items = menuGrid.querySelectorAll("li");
 
   function applyFilter(category, activeButton) {
     // reset visual
     buttons.forEach((btn) => {
-      btn.classList.remove("active", "border-amber-600","bg-rose-100");
+      btn.classList.remove("active", "border-amber-600", "bg-rose-100");
     });
 
     // estado activo
     activeButton.classList.add("active", "border-amber-600", "bg-rose-100");
 
     // filtrado
-    cards.forEach((card) => {
+    items.forEach((item) => {
+      const card = item.querySelector(".menu-card");
       const match = category === "all" || card.dataset.category === category;
-      card.classList.toggle("is-hidden", !match);
+
+      item.classList.toggle("is-hidden", !match);
     });
+
+    // Funcionamiento para mobile (horizontal)
+    const isMobile = () => window.matchMedia("(max-width: 639px)").matches;
+
+    if (isMobile()) {
+      menuGrid.scrollTo({ left: 0, behavior: "smooth" });
+    }
   }
 
   // estado inicial

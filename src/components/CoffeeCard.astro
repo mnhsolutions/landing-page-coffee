@@ -15,15 +15,8 @@ import ArrowIcon from "src/icons/ArrowIcon.astro";
 ---
 
 <div
-  class="
-    grid
-    min-h-[70vh]
-    sm:min-h-[75vh]
-    lg:min-h-[80vh]
-    grid-rows-[60%_40%]
-  "
-  style={`background-color: ${backgroundCard};`}
->
+  class="grid h-[70vh] sm:h-[75vh] lg:h-[80vh] grid-rows-[60%_40%]"
+  style={`background-color: ${backgroundCard};`}>
   <!-- IMAGE -->
   <div class="w-full overflow-hidden">
     <img
@@ -52,8 +45,7 @@ import ArrowIcon from "src/icons/ArrowIcon.astro";
         after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[2px] after:w-[40%]
         after:scale-x-0 after:origin-center after:bg-current after:transition-transform
         after:duration-200 hover:after:scale-x-100"
-      style={`color: ${textColorButtonCard};`}
-    >
+      style={`color: ${textColorButtonCard};`}>
       {textButtonCard}
       <ArrowIcon />
     </button>

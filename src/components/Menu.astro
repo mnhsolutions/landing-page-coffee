@@ -10,42 +10,53 @@ const menuData: MenuData = menuDataRaw as MenuData;
 // Generamos IDs únicos para todos los productos al cargar
 menuData.all = menuData.all.map((p, index) => ({
   ...p,
-  id: `product-${index + 1}` // id único
+  id: `product-${index + 1}`, // id único
 }));
 
 // Reasignamos los ids en los filtros
 menuData.coffes = menuData.coffes.map((_, i) => menuData.all[i].id);
-menuData.smoothies = menuData.smoothies.map((_, i) => menuData.all[menuData.coffes.length + i].id);
-menuData.baking = menuData.baking.map((_, i) => menuData.all[menuData.coffes.length + menuData.smoothies.length + i].id
+menuData.smoothies = menuData.smoothies.map(
+  (_, i) => menuData.all[menuData.coffes.length + i].id,
+);
+menuData.baking = menuData.baking.map(
+  (_, i) =>
+    menuData.all[menuData.coffes.length + menuData.smoothies.length + i].id,
 );
 menuData.snacks = menuData.snacks.map(
-  (_, i) => menuData.all[menuData.coffes.length + menuData.smoothies.length + menuData.baking.length + i].id
+  (_, i) =>
+    menuData.all[
+      menuData.coffes.length +
+        menuData.smoothies.length +
+        menuData.baking.length +
+        i
+    ].id,
 );
 
 // Función para obtener productos según filtro
-type Filter = 'all' | 'coffes' | 'smoothies' | 'baking' | 'snacks';
+type Filter = "all" | "coffes" | "smoothies" | "baking" | "snacks";
 
 function getProducts(filter: Filter): Product[] {
-  if (filter === 'all') return menuData.all;
-  return menuData[filter].map(id => {
-    const p = menuData.all.find(prod => prod.id === id);
+  if (filter === "all") return menuData.all;
+  return menuData[filter].map((id) => {
+    const p = menuData.all.find((prod) => prod.id === id);
     if (!p) throw new Error(`Product with id ${id} not found`);
     return p;
   });
 }
 
 // Aquí podrías recibir un filtro dinámico por props, por ahora mostramos todos
-const products: Product[] = getProducts('all');
+const products: Product[] = getProducts("all");
 ---
 
-<section id="menu" class="min-h-screen">
-  <div class="max-w-[1200px] mx-auto py-10 flex flex-col gap-10">
-
+<section id="menu">
+  <div class="max-w-[1200px] mx-auto py-6 md:py-10 flex flex-col gap-10">
     <!-- NAV FILTROS -->
-    <header class="flex items-center h-28">
-      <nav class="w-full flex gap-4 justify-end
+    <header class="flex items-center h-20 md:h-28">
+      <nav
+        class="w-full flex gap-4 justify-end
         max-sm:justify-center max-sm:items-center max-sm:overflow-x-auto max-sm:whitespace-nowrap
-        max-sm:pb-2">
+        max-sm:pb-2"
+      >
         <LinkMenu titleLink="Todos" filter="all" />
         <LinkMenu titleLink="Café" filter="coffes" />
         <LinkMenu titleLink="Licuados" filter="smoothies" />
@@ -55,22 +66,39 @@ const products: Product[] = getProducts('all');
     </header>
 
     <header class="flex items-center justify-center">
-      <h1 class="relative text-2xl font-bold after:absolute after:left-1/2 after:-translate-x-1/2
-        after:bottom-[-8px] after:h-[3px] after:w-28 after:bg-amber-500">
+      <h1
+        class="relative text-2xl font-bold after:absolute after:left-1/2 after:-translate-x-1/2
+        after:bottom-[-8px] after:h-[3px] after:w-28 after:bg-amber-500"
+      >
         Menú
       </h1>
     </header>
 
-    <!-- Menu productos -->
     <ul
-      id="menu-products"
-      class="grid min-h-[60vh] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
-      gap-8 justify-items-center">
+  id="menu-products"
+  class="
+    flex overflow-x-auto
+    snap-x snap-mandatory
+    gap-6
+    px-4 pb-4
 
-      {products.map((product) => (
-        <CardMenu {...product} />
-      ))}
+    md:grid md:grid-cols-3
+    lg:grid-cols-4
+    md:overflow-visible
+    md:px-0
+    md:gap-8
 
+    justify-items-center
+  "
+>
+
+      {
+        products.map((product) => (
+          <li class="snap-center shrink-0 w-72 sm:w-auto">
+            <CardMenu {...product} />
+          </li>
+        ))
+      }
     </ul>
   </div>
 </section>

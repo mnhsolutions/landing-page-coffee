@@ -45,7 +45,13 @@ import NavBar from "@components/NavBar.astro";
 
           <!-- CTA SECONDARY -->
           <a href="#about"
-            class="relative font-heading font-medium tracking-wide text-neutral-300 transition-colors duration-300 hover:text-white after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-1 after:h-px after:w-[55%] after:bg-neutral-300 after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100">
+          class="relative font-heading font-medium tracking-wide
+          text-white sm:text-neutral-300 transition-colors duration-300  hover:text-white
+          border border-white rounded-full px-4 py-3 sm:border-none sm:rounded-none sm:px-0 sm:py-0
+
+          after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-1 after:h-px after:w-[55%] after:bg-neutral-300 after:scale-x-0 after:origin-center
+          after:transition-transform after:duration-300 hover:after:scale-x-100 sm:after:block
+          after:hidden">
             Sobre nosotros
           </a>
         </div>

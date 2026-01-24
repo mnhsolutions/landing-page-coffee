@@ -68,8 +68,18 @@ export function renderCart() {
   if (!cartContainer || !cartTotal) return;
 
   cartContainer.innerHTML = ''; // limpiar
+  cartTotal.textContent = '0.00';
 
   let total = 0;
+
+  // Carrito vacío
+  if (cart.length === 0) {
+    const emptyMsg = document.createElement('p');
+    emptyMsg.className = 'text-center text-gray-500 py-4';
+    emptyMsg.textContent = 'No hay productos en el carrito...';
+    cartContainer.appendChild(emptyMsg);
+    return;
+  }
 
   cart.forEach(item => {
     const li = document.createElement('li');
