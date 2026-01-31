@@ -20,6 +20,7 @@ import IconClosemenu from "src/icons/IconClosemenu.astro";
         <slot name="hero" />
       </section>
 
+      <div id="hero-end" class="w-full h-[1px] pointer-events-none"></div>
       <section id="about" class="min-h-[80vh]">
         <slot name="about" />
       </section>
@@ -77,5 +78,6 @@ import IconClosemenu from "src/icons/IconClosemenu.astro";
   <CartInitializer client:load />
 
   <script type="module" src="/src/utils/cartSidebar.js"></script>
+  <script type="module" src="/src/utils/navbarColorOnScroll.js"></script>
   </body>
 </html>

@@ -4,6 +4,37 @@ const { titleLink, href } = Astro.props;
 
 <a
   href={href}
-  class="relative text-[1rem] font-heading font-semibold after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[2px] after:w-[50%] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100">
+  class="
+    relative
+    font-heading
+    font-semibold
+    text-current
+
+    text-xl
+    md:text-[1rem]
+
+    after:absolute
+    after:left-1/2
+    after:-translate-x-1/2
+
+    after:bottom-[-6px]
+    md:after:bottom-[-4px]
+
+    after:h-[3px]
+    md:after:h-[2px]
+
+    after:w-60
+    md:after:w-[50%]
+
+    after:bg-current
+    after:origin-center
+    after:transition-transform
+    after:duration-300
+
+    after:scale-x-100
+    md:after:scale-x-0
+    md:hover:after:scale-x-100
+  "
+>
   {titleLink}
 </a>
