@@ -54,7 +54,7 @@ export default function Checkout() {
     setPurchaseDate(formatDate(new Date()));
   }, []);
 
-  // ✅ NUEVA FUNCIÓN CLAVE — guarda todo y redirige a /success
+  // Handle que guarda todo y redirige a /success
   function handleConfirmPurchase() {
     const summary = {
       total: total.toFixed(2),
@@ -70,31 +70,30 @@ export default function Checkout() {
   }
 
   return (
-    <div className="min-h-screen grid grid-rows-[1fr_4fr] bg-gray-50">
+    <div className="min-h-screen grid grid-rows-[150px_4fr] bg-gray-50">
       <header className="flex items-center px-10">
         <h1 className="font-bold text-black text-3xl">
           Resumen de compra
         </h1>
       </header>
 
-      <div className="grid grid-cols-[3fr_1fr] gap-6 px-10 pb-10">
-        <section className="bg-white rounded-xl shadow p-4 grid grid-rows-[auto_1fr] min-h-0">
-          <h2 className="font-semibold mb-3">Productos</h2>
+      <div className="grid grid-cols-1 
+        md:grid-cols-[3fr_1fr] gap-6 px-4 md:px-10 pb-10">
+        <section className="bg-white rounded-xl shadow p-4 grid grid-rows-[60px_1fr] min-h-0">
+          <h2 className="font-bold mb-3">Productos</h2>
 
+          {/* Lista que renderiza todos los productos de la compra */}
           {cart.length === 0 ? (
             <p className="text-gray-500">
               No hay productos en el carrito
             </p>
           ) : (
-            <ul className="overflow-y-auto min-h-0 grid gap-4 pr-2">
+            <ul className="flex flex-col overflow-y-auto min-h-0 gap-4 pr-2">
               {cart.map((item) => (
                 <li
                   key={item.id}
-                  className="rounded-xl p-4 grid grid-cols-[80px_1fr_auto] gap-4 items-center"
-                  style={{
-                    boxShadow:
-                      "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
-                  }}
+                  className="rounded-xl h-24 p-4 grid grid-cols-[80px_1fr_auto] gap-4 items-center"
+                  style={{boxShadow: "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",}}
                 >
                   <img
                     src={item.image}
@@ -103,7 +102,7 @@ export default function Checkout() {
                   />
 
                   <div>
-                    <p className="font-semibold">{item.title}</p>
+                    <p className="font-bold text-black">{item.title}</p>
                     <p className="text-sm text-gray-600">
                       ${item.price} x {item.quantity}
                     </p>
@@ -118,49 +117,48 @@ export default function Checkout() {
           )}
         </section>
 
-        <aside className="bg-white rounded-xl shadow p-6 grid grid-rows-[auto_1fr_auto] gap-2">
-          <h2 className="font-semibold mb-3">Detalle</h2>
+        {/* Seccion detalle de compra de usuario */}
+        <aside className="h-fit py-10 bg-white rounded-xl shadow p-6 grid grid-rows-[auto_1fr_auto] gap-2">
+          <h2 className="font-bold mb-3">Detalle de compra</h2>
 
           <div className="flex flex-col gap-3 text-sm">
             <p>
-              <span className="font-semibold">Total:</span>{" "}
+              <span className="font-bold">Total:</span>{" "}
               ${total.toFixed(2)}
             </p>
 
             <p>
-              <span className="font-semibold">ID Transacción:</span>{" "}
+              <span className="font-bold">ID Transacción:</span>{" "}
               {transactionId}
             </p>
 
             <p>
-              <span className="font-semibold">Método de pago:</span>{" "}
+              <span className="font-bold">Método de pago:</span>{" "}
               {paymentMethod}
             </p>
 
             <p>
-              <span className="font-semibold">Fecha:</span>{" "}
+              <span className="font-bold">Fecha:</span>{" "}
               {purchaseDate}
             </p>
 
             <p>
-              <span className="font-semibold">Comerciante:</span>{" "}
+              <span className="font-bold">Comerciante:</span>{" "}
               {merchant}
             </p>
           </div>
 
-          {/* ✅ BOTÓN CLAVE */}
+          {/* Boton de confirmacion de compra */}
           <button
             onClick={handleConfirmPurchase}
-            className="w-full bg-amber-500 text-white py-3 rounded-xl"
-          >
-            Confirmar compra
+            className="w-full bg-amber-500 text-white py-3 rounded-xl cursor-pointer hover:bg-amber-700">
+              Confirmar compra
           </button>
 
           <button
             onClick={() => (window.location.href = "/")}
-            className="w-full bg-gray-800 text-white py-3 rounded-xl"
-          >
-            Volver a inicio
+            className="w-full bg-gray-800 text-white py-3 rounded-xl cursor-pointer hover:opacity-90">
+              Volver a inicio
           </button>
         </aside>
       </div>

@@ -1,49 +1,53 @@
 {
   "coffees": [
     {
+      "headerBackground": "#ffb900",
       "imageCard": "/src/assets/images/coffes/cut-coffee.png",
       "titleCard": "Cortado Clásico",
-      "textCard": "Espresso suave combinado con leche caliente y una delicada capa de espuma.",
-      "textButtonCard": "Pedí ahora",
-      "backgroundCard": "#004953",
-      "titleColorCard": "#FFF",
-      "textColorCard": "#FFF",
-      "textColorButtonCard": "#FFF",
-      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]"
-    },
-    
-    {
-      "imageCard": "/src/assets/images/coffes/cold-brew.png",
-      "titleCard": "Café Frío",
-      "textCard": "Café infusionado en frío durante varias horas, de sabor suave, baja acidez y notas naturalmente dulces. Refrescante y equilibrado.",
+      "textCard": "Suave espresso con leche caliente y espuma.",
       "textButtonCard": "Pedí ahora",
       "backgroundCard": "#e7dad2",
-      "titleColorCard": "#004953",
-      "textColorCard": "#004953",
-      "textColorButtonCard": "#004953",
-      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]"
-    },
-    {
-      "imageCard": "/src/assets/images/coffes/coffee-cold.png",
-      "titleCard": "Café Helado Chocolate",
-      "textCard": "Café preparado en caliente y servido frío con hielo, conservando su intensidad y aroma. Refrescante y de sabor más marcado.",
-      "textButtonCard": "Pedí ahora",
-      "backgroundCard": "#f0974e",
       "titleColorCard": "#281500",
       "textColorCard": "#281500",
       "textColorButtonCard": "#FFF",
-      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.5)]"
+      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]"
+    },
+
+    {
+      "headerBackground": "#ffb900",
+      "imageCard": "/src/assets/images/coffes/cold-brew.png",
+      "titleCard": "Café Frío",
+      "textCard": "Refrescante, con granos de café.",
+      "textButtonCard": "Pedí ahora",
+      "backgroundCard": "#e7dad2",
+      "titleColorCard": "#281500",
+      "textColorCard": "#281500",
+      "textColorButtonCard": "#FFF",
+      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]"
     },
     {
+      "headerBackground": "#ffb900",
+      "imageCard": "/src/assets/images/coffes/coffee-cold.png",
+      "titleCard": "Café Helado Chocolate",
+      "textCard": "Refrescante, intenso y aromático",
+      "textButtonCard": "Pedí ahora",
+      "backgroundCard": "#e7dad2",
+      "titleColorCard": "#281500",
+      "textColorCard": "#281500",
+      "textColorButtonCard": "#FFF",
+      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]"
+    },
+    {
+      "headerBackground": "#ffb900",
       "imageCard": "/src/assets/images/coffes/latte-clasicc.png",
       "titleCard": "Café con leche clásico",
-      "textCard": "Espresso intenso combinado con abundante leche vaporizada y una fina capa de espuma, logrando un café suave y cremoso.",
+      "textCard": "Espresso con leche vaporizada.",
       "textButtonCard": "Pedí ahora",
-      "backgroundCard": "#362415",
-      "titleColorCard": "#FFF",
-      "textColorCard": "#FFF",
+      "backgroundCard": "#e7dad2",
+      "titleColorCard": "#281500",
+      "textColorCard": "#281500",
       "textColorButtonCard": "#FFF",
-      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.8)]"
+      "imageShadow": "drop-shadow-[0_18px_32px_rgba(0,0,0,0.4)]"
     }
   ]
 }

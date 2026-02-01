@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { CheckIcon } from "src/icons/CheckIcon";
+import { generateReceiptPDF } from "src/utils/generateReceiptPdf";
 
 export default function SuccessClient() {
   const [summary, setSummary] = useState(null);
@@ -11,26 +13,18 @@ export default function SuccessClient() {
   if (!summary)
     return <p className="p-10 text-center">Cargando comprobante...</p>;
 
+  // Handle que se encarga de generar el pdf del ticket
+  function handleDownloadReceipt() {
+    generateReceiptPDF(summary);
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
       {/* TICKET PRINCIPAL */}
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg h-[80vh] flex flex-col overflow-hidden">
         {/* HEADER VERDE CON CHECK PEQUEÑO */}
         <div className="bg-green-100 text-green-800 text-center p-6 flex flex-col items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 text-green-600 mb-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+          <CheckIcon />
 
           <h1 className="text-xl font-bold">¡Compra exitosa!</h1>
           <p className="text-sm opacity-80">
@@ -72,18 +66,19 @@ export default function SuccessClient() {
           </div>
         </div>
 
-        {/* FOOTER CON BOTÓN */}
+        {/* Botones */}
         <div className="flex flex-col p-6 border-t bg-gray-50 gap-2">
-          <button           
-          className="w-full bg-gray-900 text-white py-3 rounded-xl hover:bg-black transition">
-            Descargar comprobante
+          <button
+            onClick={handleDownloadReceipt}     
+            className="w-full bg-gray-900 text-white py-3 rounded-xl hover:bg-black transition cursor-pointer">
+              Descargar comprobante
           </button>
           <button
             onClick={() => {
               localStorage.removeItem("cart");
               window.location.href = "/";
             }}
-            className="w-full bg-gray-900 text-white py-3 rounded-xl hover:bg-black transition">
+            className="w-full bg-gray-900 text-white py-3 rounded-xl hover:bg-black transition cursor-pointer">
             Volver al inicio
           </button>
         </div>

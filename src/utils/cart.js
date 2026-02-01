@@ -2,25 +2,33 @@ import { showToast } from "./toast.js";
 
 let cart = [];
 
-// Inicializa el carrito desde localStorage
+// ==============================
+// INICIALIZACIÓN
+// ==============================
 export function initCart() {
-  cart = JSON.parse(localStorage.getItem('cart')) || [];
-  renderCart(); // Actualiza overlay si existe
+  cart = JSON.parse(localStorage.getItem("cart")) || [];
+  renderCart();
 }
 
-// Devuelve el carrito actual
+// ==============================
+// GETTER
+// ==============================
 export function getCart() {
   return cart;
 }
 
-// Guardar carrito en localStorage
+// ==============================
+// GUARDAR EN STORAGE
+// ==============================
 function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Agregar producto
+// ==============================
+// AGREGAR PRODUCTO
+// ==============================
 export function addToCart(product) {
-  const existing = cart.find(item => item.id === product.id);
+  const existing = cart.find((item) => item.id === product.id);
 
   if (existing) {
     existing.quantity++;
@@ -34,18 +42,18 @@ export function addToCart(product) {
   renderCart();
 }
 
-// Corregir esta funcion, de decremento de producto, si es igual a 1 y borramos (borrar producto)
-// Eliminar producto
+// ==============================
+// ELIMINAR / DECREMENTAR
+// ==============================
 export function removeFromCart(productId) {
-  const item = cart.find(i => i.id === productId);
+  const item = cart.find((i) => i.id === productId);
   if (!item) return;
 
   if (item.quantity > 1) {
-    item.quantity--; // decrementamos
+    item.quantity--;
     showToast(`-1 ${item.title}`, "warning");
   } else {
-    // si es 1, lo eliminamos
-    cart = cart.filter(i => i.id !== productId);
+    cart = cart.filter((i) => i.id !== productId);
     showToast(`${item.title} eliminado`, "error");
   }
 
@@ -53,43 +61,56 @@ export function removeFromCart(productId) {
   renderCart();
 }
 
-// Actualizar cantidad
+// ==============================
+// ACTUALIZAR CANTIDAD
+// ==============================
 export function updateQuantity(productId, quantity) {
-  const item = cart.find(item => item.id === productId);
+  const item = cart.find((item) => item.id === productId);
   if (item) item.quantity = quantity;
 
   saveCart();
   renderCart();
 }
 
+// ==============================
+// RENDER PRINCIPAL DEL CARRITO
+// ==============================
 export function renderCart() {
-  const cartContainer = document.getElementById('cart-items');
-  const cartTotal = document.getElementById('cart-total');
-  if (!cartContainer || !cartTotal) return;
+  const cartContainer = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  const totalWrapper = document.getElementById("cart-total-wrapper"); // <-- clave
 
-  cartContainer.innerHTML = ''; // limpiar
-  cartTotal.textContent = '0.00';
+  if (!cartContainer || !cartTotal || !totalWrapper) return;
+
+  cartContainer.innerHTML = "";
+  cartTotal.textContent = "";
 
   let total = 0;
 
-  // Carrito vacío
+  // ---- CARRITO VACÍO ----
   if (cart.length === 0) {
-    const emptyMsg = document.createElement('p');
-    emptyMsg.className = 'text-center text-gray-500 py-4';
-    emptyMsg.textContent = 'No hay productos en el carrito...';
+    const emptyMsg = document.createElement("p");
+    emptyMsg.className = "text-center text-gray-500 py-4";
+    emptyMsg.textContent = "No hay productos en el carrito...";
     cartContainer.appendChild(emptyMsg);
+
+    totalWrapper.classList.add("hidden"); // 🔥 OCULTAMOS TOTAL
     return;
   }
 
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'flex items-center justify-between gap-4 mb-2 p-2 border rounded shadow-sm';
+  // ---- RENDER DE ITEMS ----
+  cart.forEach((item) => {
+    const li = document.createElement("li");
+    li.className =
+      "flex items-center justify-between gap-4 mb-2 p-2 border rounded shadow-sm";
 
     li.innerHTML = `
       <img src="${item.image}" alt="${item.title}" class="h-16 w-16 object-contain rounded"/>
       <div class="flex-1 flex flex-col justify-center">
         <p class="font-semibold">${item.title}</p>
-        <p class="text-sm text-gray-600">$${item.price} x <span class="quantity">${item.quantity}</span></p>
+        <p class="text-sm text-gray-600">
+          $${item.price} x <span class="quantity">${item.quantity}</span>
+        </p>
       </div>
       <div class="flex flex-col gap-1">
         <button data-id="${item.id}" class="increment cursor-pointer bg-amber-500 hover:bg-amber-700 text-white rounded px-2">+</button>
@@ -97,14 +118,12 @@ export function renderCart() {
       </div>
     `;
 
-    // Incrementar cantidad
-    li.querySelector('.increment').addEventListener('click', () => {
+    li.querySelector(".increment").addEventListener("click", () => {
       updateQuantity(item.id, item.quantity + 1);
       showToast(`+1 ${item.title}`, "success");
     });
 
-    // Decrementar cantidad o eliminar si es 1
-    li.querySelector('.decrement').addEventListener('click', () => {
+    li.querySelector(".decrement").addEventListener("click", () => {
       if (item.quantity > 1) {
         updateQuantity(item.id, item.quantity - 1);
         showToast(`-1 ${item.title}`, "warning");
@@ -118,5 +137,12 @@ export function renderCart() {
     total += item.price * item.quantity;
   });
 
+  // ---- MOSTRAR TOTAL SOLO SI > 0 ----
   cartTotal.textContent = total.toFixed(2);
+
+  if (total > 0) {
+    totalWrapper.classList.remove("hidden");
+  } else {
+    totalWrapper.classList.add("hidden");
+  }
 }

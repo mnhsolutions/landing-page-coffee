@@ -63,16 +63,21 @@ import IconClosemenu from "src/icons/IconClosemenu.astro";
     </ul>
 
     <footer class="mt-4">
-      <p class="font-bold text-lg">Total: $<span id="cart-total">0</span></p>
-      <button id="go-checkout" class="w-full mt-2 bg-amber-500 text-white py-4 rounded-xl">Pagar</button>
+      <p id="cart-total-wrapper" class="font-bold text-lg hidden">
+        Total: $<span id="cart-total"></span>
+      </p>
+      <button id="go-checkout" class="w-full mt-2 bg-amber-500 text-white py-4 rounded-xl cursor-pointer hover:bg-amber-700">
+        Pagar
+      </button>
     </footer>
   </div>
 </div>
 
+  <!-- Toast de notifiacion del carrito  -->
   <div id="toast"
     class="fixed top-0 left-1/2 -translate-x-1/2 z-[999] mt-2 px-6 py-3 rounded-lg shadow-lg
     text-white text-sm font-medium opacity-0 -translate-y-6 transition-all duration-300 pointer-events-none">
-</div>
+  </div>
 
   <!-- Inicializamos el carrito en cliente -->
   <CartInitializer client:load />

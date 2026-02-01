@@ -3,21 +3,37 @@ import CoffeeCard from "@components/CoffeeCard.astro";
 import coffees from "../data/coffees.json";
 ---
 
-<section
+<section>
+  <div class="max-w-[1200px] mx-auto py-10">
+    <section class="flex flex-col gap-10 mx-0">
+      <header class="flex items-center justify-center">
+        <h1 class="relative text-2xl font-bold after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[-8px] after:h-[3px] after:w-44 after:bg-amber-500">
+          Descubre nuestros cafés
+        </h1>
+      </header>
+
+      <ul 
   class="
-    flex overflow-x-auto gap-6
-    snap-x snap-mandatory
-    px-4 pb-4
+    flex overflow-x-auto 
+    gap-2                /* separación real del carrusel */
+    snap-x snap-mandatory 
+    px-3 pb-4            /* ← MENOS padding en mobile */
+
     sm:grid sm:grid-cols-2
-    lg:grid-cols-4
-    sm:overflow-visible
-    sm:px-0
-    sm:gap-6
-    max-w-7xl mx-auto
-  ">
-  {coffees.coffees.map((coffee) => (
-    <div class="snap-center shrink-0 w-72 sm:w-auto">
-      <CoffeeCard {...coffee} />
-    </div>
-  ))}
+    sm:overflow-visible sm:px-0 sm:gap-8
+    justify-items-center
+
+    lg:grid-cols-4 lg:gap-2
+  "
+>
+        {
+          coffees.coffees.map((service) => (
+            <li class="snap-center shrink-0 w-auto sm:w-auto">
+              <CoffeeCard {...service} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
 </section>
