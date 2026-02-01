@@ -37,3 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === cartOverlay) closeCart();
   });
 });
+
+document.getElementById("go-checkout").addEventListener("click", () => {
+  window.location.href = "/checkout";
+});
