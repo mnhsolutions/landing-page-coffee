@@ -9,9 +9,9 @@ import IconClosemenu from "src/icons/IconClosemenu.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>Coffee landing</title>
+    <title>CoffeeLab · Inicio</title>
   </head>
 
   <body class="m-0 w-full">
@@ -21,16 +21,17 @@ import IconClosemenu from "src/icons/IconClosemenu.astro";
       </section>
 
       <div id="hero-end" class="w-full h-[1px] pointer-events-none"></div>
-      <section id="about" class="min-h-[80vh]">
-        <slot name="about" />
-      </section>
-
+      
       <section id="coffees" class="min-h-[70vh]">
         <slot name="coffees" />
       </section>
 
       <section id="menu" class="min-h-fit md:min-h-[80vh]">
         <slot name="menu" />
+      </section>
+
+      <section id="about" class="min-h-[80vh]">
+        <slot name="about" />
       </section>
 
       <section id="services" class="min-h-fit md:min-h-[80vh]">
@@ -66,8 +67,10 @@ import IconClosemenu from "src/icons/IconClosemenu.astro";
       <p id="cart-total-wrapper" class="font-bold text-lg hidden">
         Total: $<span id="cart-total"></span>
       </p>
-      <button id="go-checkout" class="w-full mt-2 bg-amber-500 text-white py-4 rounded-xl cursor-pointer hover:bg-amber-700">
-        Pagar
+      <button id="go-checkout" 
+        class="w-full mt-2 bg-amber-500 text-white py-4 rounded-xl cursor-pointer 
+         transition-all duration-300 ease-in-out hover:bg-amber-700">
+          Pagar
       </button>
     </footer>
   </div>

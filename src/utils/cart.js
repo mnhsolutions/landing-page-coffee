@@ -3,18 +3,39 @@ import { showToast } from "./toast.js";
 let cart = [];
 
 // ==============================
+// EVENTO GLOBAL
+// ==============================
+function notifyCartChange() {
+  window.dispatchEvent(new CustomEvent("cart:updated"));
+}
+
+// ==============================
 // INICIALIZACIÓN
 // ==============================
 export function initCart() {
   cart = JSON.parse(localStorage.getItem("cart")) || [];
   renderCart();
+  
+  //  sincroniza botones al cargar
+  notifyCartChange(); 
 }
 
 // ==============================
-// GETTER
+// GETTERS
 // ==============================
 export function getCart() {
   return cart;
+}
+
+export function isCartEmpty() {
+  return cart.length === 0;
+}
+
+export function getCartTotal() {
+  return cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 }
 
 // ==============================
@@ -40,6 +61,7 @@ export function addToCart(product) {
 
   saveCart();
   renderCart();
+  notifyCartChange();
 }
 
 // ==============================
@@ -59,6 +81,7 @@ export function removeFromCart(productId) {
 
   saveCart();
   renderCart();
+  notifyCartChange();
 }
 
 // ==============================
@@ -66,21 +89,25 @@ export function removeFromCart(productId) {
 // ==============================
 export function updateQuantity(productId, quantity) {
   const item = cart.find((item) => item.id === productId);
-  if (item) item.quantity = quantity;
+  if (!item) return;
+
+  item.quantity = quantity;
 
   saveCart();
   renderCart();
+  notifyCartChange();
 }
 
 // ==============================
-// RENDER PRINCIPAL DEL CARRITO
+// RENDER DEL CARRITO
 // ==============================
 export function renderCart() {
   const cartContainer = document.getElementById("cart-items");
   const cartTotal = document.getElementById("cart-total");
-  const totalWrapper = document.getElementById("cart-total-wrapper"); // <-- clave
+  const totalWrapper = document.getElementById("cart-total-wrapper");
+  const btnCart = document.getElementById("go-checkout");
 
-  if (!cartContainer || !cartTotal || !totalWrapper) return;
+  if (!cartContainer || !cartTotal || !totalWrapper || !btnCart) return;
 
   cartContainer.innerHTML = "";
   cartTotal.textContent = "";
@@ -90,15 +117,23 @@ export function renderCart() {
   // ---- CARRITO VACÍO ----
   if (cart.length === 0) {
     const emptyMsg = document.createElement("p");
+
     emptyMsg.className = "text-center text-gray-500 py-4";
     emptyMsg.textContent = "No hay productos en el carrito...";
     cartContainer.appendChild(emptyMsg);
 
-    totalWrapper.classList.add("hidden"); // 🔥 OCULTAMOS TOTAL
+    // Si el carrito no tiene productos, se oculta el boton pagar y el total
+    btnCart.style.display = "none";
+    totalWrapper.classList.add("hidden");
+
     return;
   }
 
-  // ---- RENDER DE ITEMS ----
+  // Si el carrito contiene productos, se muestra el boton pagar y el total
+  btnCart.style.display = "block";
+  totalWrapper.classList.remove("hidden");
+
+  // ---- ITEMS ----
   cart.forEach((item) => {
     const li = document.createElement("li");
     li.className =
@@ -106,15 +141,13 @@ export function renderCart() {
 
     li.innerHTML = `
       <img src="${item.image}" alt="${item.title}" class="h-16 w-16 object-contain rounded"/>
-      <div class="flex-1 flex flex-col justify-center">
+      <div class="flex-1">
         <p class="font-semibold">${item.title}</p>
-        <p class="text-sm text-gray-600">
-          $${item.price} x <span class="quantity">${item.quantity}</span>
-        </p>
+        <p class="text-sm text-gray-600">$${item.price} x ${item.quantity}</p>
       </div>
       <div class="flex flex-col gap-1">
-        <button data-id="${item.id}" class="increment cursor-pointer bg-amber-500 hover:bg-amber-700 text-white rounded px-2">+</button>
-        <button data-id="${item.id}" class="decrement cursor-pointer bg-amber-500 hover:bg-amber-700 text-white rounded px-2">-</button>
+        <button class="increment bg-amber-500 hover:bg-amber-700 text-white rounded px-2">+</button>
+        <button class="decrement bg-amber-500 hover:bg-amber-700 text-white rounded px-2">-</button>
       </div>
     `;
 
@@ -133,16 +166,9 @@ export function renderCart() {
     });
 
     cartContainer.appendChild(li);
-
     total += item.price * item.quantity;
   });
 
-  // ---- MOSTRAR TOTAL SOLO SI > 0 ----
   cartTotal.textContent = total.toFixed(2);
-
-  if (total > 0) {
-    totalWrapper.classList.remove("hidden");
-  } else {
-    totalWrapper.classList.add("hidden");
-  }
+  totalWrapper.classList.remove("hidden");
 }

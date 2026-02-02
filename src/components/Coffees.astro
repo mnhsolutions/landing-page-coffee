@@ -12,20 +12,12 @@ import coffees from "../data/coffees.json";
         </h1>
       </header>
 
-      <ul 
-  class="
-    flex overflow-x-auto 
-    gap-2                /* separación real del carrusel */
-    snap-x snap-mandatory 
-    px-3 pb-4            /* ← MENOS padding en mobile */
-
-    sm:grid sm:grid-cols-2
-    sm:overflow-visible sm:px-0 sm:gap-8
-    justify-items-center
-
-    lg:grid-cols-4 lg:gap-2
-  "
->
+      <ul
+       class="flex overflow-x-auto gap-2 snap-x snap-mandatory px-3 pb-4
+       sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:gap-8
+       justify-items-center
+       lg:grid-cols-4 lg:gap-6
+       xl:grid-cols-4 xl:max-w-[1200px] xl:mx-auto">
         {
           coffees.coffees.map((service) => (
             <li class="snap-center shrink-0 w-auto sm:w-auto">
