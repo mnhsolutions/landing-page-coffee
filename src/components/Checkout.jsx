@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const paymentMethods = [
   "Tarjeta de crédito",
@@ -29,6 +30,12 @@ function formatDate(date) {
 export default function Checkout() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [statusText, setStatusText] = useState("Confirmar compra");
+
+
+
 
   const [transactionId, setTransactionId] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -36,38 +43,76 @@ export default function Checkout() {
   const merchant = "Café Moderno — Tienda Oficial";
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(storedCart);
+  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const calcTotal = storedCart.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
+  // 🔒 PROTECCIÓN CHECKOUT
+  if (storedCart.length === 0) {
+    window.location.href = "/";
+    return;
+  }
 
-    setTotal(calcTotal);
+  setCart(storedCart);
 
-    // Simulaciones una sola vez al cargar la página
-    setTransactionId(generateTransactionId());
-    setPaymentMethod(
-      paymentMethods[Math.floor(Math.random() * paymentMethods.length)]
-    );
-    setPurchaseDate(formatDate(new Date()));
-  }, []);
+  const calcTotal = storedCart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  setTotal(calcTotal);
+
+  setTransactionId(generateTransactionId());
+  setPaymentMethod(
+    paymentMethods[Math.floor(Math.random() * paymentMethods.length)]
+  );
+  setPurchaseDate(formatDate(new Date()));
+}, []);
 
   // Handle que guarda todo y redirige a /success
   function handleConfirmPurchase() {
-    const summary = {
-      total: total.toFixed(2),
-      transactionId,
-      paymentMethod,
-      purchaseDate,
-      merchant,
-    };
+  if (isProcessing) return;
 
-    localStorage.setItem("purchase_summary", JSON.stringify(summary));
+  setIsProcessing(true);
+  setProgress(0);
+  setStatusText("Procesando pago...");
 
-    window.location.href = "/success";
-  }
+  let current = 0;
+
+  const interval = setInterval(() => {
+    const increment = Math.random() * 12 + 5;
+    current += increment;
+
+    if (current >= 80) {
+      setStatusText("Confirmando compra...");
+    }
+
+    if (current >= 100) {
+      current = 100;
+      clearInterval(interval);
+
+      setTimeout(() => {
+        const summary = {
+          total: total.toFixed(2),
+          transactionId,
+          paymentMethod,
+          purchaseDate,
+          merchant,
+        };
+
+        localStorage.setItem(
+          "purchase_summary",
+          JSON.stringify(summary)
+        );
+
+        window.location.href = "/success";
+      }, 600);
+    }
+
+    setProgress(current);
+  }, 180);
+}
+
+
+
 
   return (
     <div className="min-h-screen grid grid-rows-[150px_4fr] bg-gray-50">
@@ -149,11 +194,58 @@ export default function Checkout() {
           </div>
 
           {/* Boton de confirmacion de compra */}
-          <button
+
+          <motion.button
             onClick={handleConfirmPurchase}
-            className="w-full bg-amber-500 text-white py-3 rounded-xl cursor-pointer hover:bg-amber-700">
-              Confirmar compra
-          </button>
+            disabled={isProcessing || cart.length === 0}
+            whileTap={!isProcessing ? { scale: 0.97 } : {}}
+            className={`relative w-full overflow-hidden rounded-xl py-3 font-semibold text-white
+          ${ isProcessing || cart.length === 0
+            ? "bg-amber-400 cursor-not-allowed"
+            : "bg-amber-500 hover:bg-amber-700"
+            }`}
+          >
+            {/* Barra */}
+            <motion.span
+              className="absolute left-0 top-0 h-full bg-amber-700"
+              animate={{ width: `${progress}%` }}
+              transition={{ ease: "easeOut", duration: 0.3 }}
+            />
+
+            {/* Texto */}
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <AnimatePresence mode="wait">
+                {progress < 100 ? (
+                  <motion.span
+                    key={statusText}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center gap-2"
+                  >
+                    {isProcessing && (
+                      <motion.span
+                        className="h-4 w-4 rounded-full border-2 border-white border-t-transparent"
+                        animate={{ rotate: 360 }}
+                        transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                      />
+                    )}
+                    {statusText}
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="success"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    ✔ Pago confirmado
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </span>
+          </motion.button>
 
           <button
             onClick={() => (window.location.href = "/")}

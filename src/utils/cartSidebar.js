@@ -1,13 +1,20 @@
+import { initCart, isCartEmpty } from "./cart.js";
+import { showToast } from "./toast.js";
+
 document.addEventListener("DOMContentLoaded", () => {
+  initCart(); //  sincroniza con localStorage
+
   const cartOverlay = document.getElementById("cart-overlay");
   const cartSidebar = document.getElementById("cart-sidebar");
   const closeCartBtn = document.getElementById("close-cart");
-  const cartIcon = document.getElementById("cart-icon"); // ahora único botón
+  const cartIcon = document.getElementById("cart-icon");
+  const checkoutBtn = document.getElementById("go-checkout");
   const html = document.documentElement;
 
+  // =====================
+  // ABRIR / CERRAR
+  // =====================
   function openCart() {
-    if (!cartOverlay || !cartSidebar) return;
-
     cartOverlay.classList.remove("hidden");
     html.style.overflow = "hidden";
     cartSidebar.classList.remove("translate-x-full");
@@ -15,8 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeCart() {
-    if (!cartOverlay || !cartSidebar) return;
-
     cartSidebar.classList.remove("translate-x-0");
     cartSidebar.classList.add("translate-x-full");
 
@@ -26,18 +31,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
-  // Abrir carrito
   cartIcon?.addEventListener("click", openCart);
-
-  // Cerrar carrito
   closeCartBtn?.addEventListener("click", closeCart);
 
-  // Cerrar al hacer click fuera del sidebar
   cartOverlay?.addEventListener("click", (e) => {
     if (e.target === cartOverlay) closeCart();
   });
-});
 
-document.getElementById("go-checkout").addEventListener("click", () => {
-  window.location.href = "/checkout";
+  // =====================
+  // BOTÓN PAGAR
+  // =====================
+  if (!checkoutBtn) return;
+
+  function updateCheckoutButton() {
+    if (isCartEmpty()) {
+      checkoutBtn.disabled = true;
+      checkoutBtn.classList.add("opacity-100", "cursor-not-allowed");
+    } else {
+      checkoutBtn.disabled = false;
+      checkoutBtn.classList.remove("opacity-50", "cursor-not-allowed");
+    }
+  }
+
+  // estado inicial
+  updateCheckoutButton();
+
+  checkoutBtn.addEventListener("click", () => {
+    if (isCartEmpty()) {
+      showToast("El carrito está vacío", "error");
+      return;
+    }
+
+    window.location.href = "/checkout";
+  });
+
+  // 🔥 ESCUCHA CAMBIOS DEL CARRITO
+  window.addEventListener("cart:updated", updateCheckoutButton);
 });
