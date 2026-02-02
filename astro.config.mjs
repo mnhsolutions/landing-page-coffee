@@ -5,8 +5,7 @@ import react from '@astrojs/react';
 import path from 'path';
 
 export default defineConfig({
-  output: "server",
-  adapter: netlify(), 
+  output: "static",
 
   integrations: [react()], 
   vite: {
